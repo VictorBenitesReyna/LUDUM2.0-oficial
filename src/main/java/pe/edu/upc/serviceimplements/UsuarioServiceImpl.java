@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.entities.Usuario;
+
 import pe.edu.upc.repositories.IUsuario;
+
 import pe.edu.upc.serviceinterfaces.IUsuarioService;
 
 @Service
@@ -23,7 +25,8 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	}
 
 	@Override
-	public List<Usuario> list() {
+	public List<Usuario> list() 
+	{
 		return uR.findAll();
 	}
 
