@@ -14,7 +14,7 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUsuario;
-	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un caracter especial")
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un caracter especial") //restricciones
 	@Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número")
 	@Column(name = "nombreUsuario",length=35,nullable = false)
 	private String nombreUsuario;
@@ -39,10 +39,13 @@ public class Usuario {
 		this.password = password;
 		this.nickname = nickname;
 	}
-	public Usuario() {
+	public Usuario() 
+	{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	public int getIdUsuario() {
 		return idUsuario;
 	}
