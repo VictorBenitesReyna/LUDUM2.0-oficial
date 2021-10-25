@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.entities.Role;
 import pe.edu.upc.entities.Usuario;
+import pe.edu.upc.serviceinterfaces.IRoleService;
 import pe.edu.upc.serviceinterfaces.IUsuarioService;
 
 
@@ -19,6 +21,10 @@ import pe.edu.upc.serviceinterfaces.IUsuarioService;
 public class UsuarioController {
 	@Autowired
 	private IUsuarioService uService;
+	
+	@Autowired
+	private IRoleService rService;
+	
 	@GetMapping("/new")
 	public String newUsuario(Model model) {
 		model.addAttribute("usuario", new Usuario());
@@ -41,15 +47,16 @@ public class UsuarioController {
 			return "usuario/usuario";
 		} else {
 			int rpta = uService.insert(usuario);
-			if (rpta > 0) {
+			if (rpta == -1) {
 				model.addAttribute("mensaje", "Ya existe");
 				return "usuario/usuario";
 			} else {
+				
 				model.addAttribute("mensaje", "Se guardó correctamente");
 				status.setComplete();
 			}
 		}
 		model.addAttribute("usuario", new Usuario());
-		return "redirect:/usuarios/list";
+		return "login";	
 	}
 }
