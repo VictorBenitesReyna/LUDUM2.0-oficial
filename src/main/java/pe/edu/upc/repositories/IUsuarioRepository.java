@@ -8,8 +8,9 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.entities.Usuario;
 
 @Repository
-public interface IUsuario extends JpaRepository<Usuario, Integer> {
+public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
-	@Query("select count(c.nombreUsuario) from Usuario c where c.nombreUsuario=:name")
-	public int nombresExistentes(@Param("name") String nombre);
+	@Query("select count(c.username) from Usuario c where c.username=:username")
+	public int nombresExistentes(@Param("username") String username);
+	public Usuario findByUsername(String username);
 }
