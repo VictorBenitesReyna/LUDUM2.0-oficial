@@ -31,6 +31,9 @@ public class Usuario {
 	@Column(name = "apellidoUsuario", nullable = false, length = 20)
 	private String apellidoUsuario;
 	
+	@Column(name = "foto", nullable = true)
+	private String photoProduct;
+	
 	@Column(name = "password", nullable = false)
 	private String password;
 	
@@ -41,22 +44,22 @@ public class Usuario {
 	@JoinColumn(name = "user_id")
 	private List<Role> roles;
 	
-	
-	
-
+		
 	public Usuario(int idUsuario,
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un caracter especial") @Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número") String nombreUsuario,
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El Apellido del Usuario no puede contener un caracter especial") @Pattern(regexp = "[^0-9]+", message = "El Apellido del Usuario no puede contener un número") String apellidoUsuario,
-			String password, String username) {
+			String photoProduct, String password, String username, List<Role> roles) {
 		super();
 		this.idUsuario = idUsuario;
 		this.nombreUsuario = nombreUsuario;
 		this.apellidoUsuario = apellidoUsuario;
+		this.photoProduct = photoProduct;
 		this.password = password;
 		this.username = username;
+		this.roles = roles;
 	}
-	
-	
+
+
 
 	public Usuario() {
 		super();
@@ -103,6 +106,19 @@ public class Usuario {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+
+	public String getPhotoProduct() {
+		return photoProduct;
+	}
+
+
+
+	public void setPhotoProduct(String photoProduct) {
+		this.photoProduct = photoProduct;
+	}
+
+
 
 	public List<Role> getRoles() {
 		return roles;
