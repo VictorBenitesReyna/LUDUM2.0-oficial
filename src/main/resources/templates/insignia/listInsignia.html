@@ -34,7 +34,7 @@
 						<th scope="col" class="text-center">Codigo Insignia</th>
 						<th scope="col" class="text-center">Nombre</th>
 						<th scope="col" class="text-center">Puntaje</th>
-						<th scope="col" class="text-center">Videojuego</th>
+						<th scope="col" class="text-center">Videojuegos</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,7 +42,6 @@
 						<td class="text-center"><a class="btn btn-warning btn-xs"
 							th:href="@{/insignias/view/} + ${p.codigoInsignia}"
 							th:text="${p.codigoInsignia}"></a></td>
-						<td class="text-center" th:text="${p.codigoInsignia}"></td>
 						<td class="text-center" th:text="${p.nombre}"></td>
 						<td class="text-center" th:text="${p.puntaje}"></td>
 						<td class="text-center" th:text="${p.videojuego.plataforma}"></td>
