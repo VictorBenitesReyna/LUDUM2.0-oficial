@@ -23,51 +23,59 @@
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
 		<div class="content container row col-12">
-			<div class="col-1">
-				<h3></h3>
+			<div class="col-6">
+				<h3>Registrar Insignias</h3>
+				<img class="imgform" alt="" th:src="@{/img/form/producto.png}">
 			</div>
-			<div class="col-3">
-				<h3>Registrar Videojuegos</h3>
-			</div>
-			<div class="col-8 frm-registro">
-				<form th:action="@{/videojuegos/save}" method="post"
-					th:object="${videojuego}">
-					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{codigovideojuego}"></input>
+			<div class="col-6 frm-registro">
+				<form th:action="@{/insignias/save}" method="post" class="row"
+					th:object="${insignia}" enctype="multipart/form-data">
 
+					<div class="col-6">
+					<!-- div class="form-group">
+							<label for="idrepu">Codigo Insignia:</label> <input type="text" readonly
+								class="form-control" th:field="*{codigoInsignia}"></input>
+						</div>
+					-->	
 						<div class="form-group">
-							<label for="nombre">Numero Equipo:</label> <input type="text"
-								required th:field="*{numeroequipo}" class="form-control"
-								id="numeroequipo"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('numeroequipo')}"
-								th:errors="*{numeroequipo}"></div>
+							<label for="nombre">Codigo Insignia:</label> <input type="text" required
+								th:field="*{codigoInsignia}" class="form-control" id="codigoInsignia"></input>
 						</div>
 						
 						<div class="form-group">
-							<label for="nombre">Nickname:</label> <input type="text" required
-								th:field="*{nickname}" class="form-control" id="nickname"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
+							<label for="nombre">Nombre:</label> <input type="text" required
+								th:field="*{nombre}" class="form-control" id="nombre"></input>
 						</div>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 
 						<div class="form-group">
-							<label for="nombre">Plataforma:</label> <input type="text"
-								required th:field="*{plataforma}" class="form-control"
-								id="plataforma"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('plataforma')}"
-								th:errors="*{plataforma}"></div>
+							<label for="estado">Puntaje:</label> <input
+								style="color:black;" type="text" required th:field="*{puntaje}"
+								class="form-control" id="puntaje"></input>
 						</div>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('puntaje')}"
+							th:errors="*{puntaje}"></div>
 
 
+						<div class="col-6">
+							<div class="form-group">
+								<label for="videojuego">VideoJuego:</label> <select
+									class="form-control" th:field="*{videojuego.codigovideojuego}">
+									<option th:each="c: ${listaVideojuegos}" th:value="${c.codigovideojuego}"
+										th:text="${c.plataforma}"
+										th:selected="(${c.codigovideojuego} == *{videojuego.codigovideojuego})"></option>
+								</select>
+							</div>
 
-
+						</div>
 					</div>
-					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="/videojuegos/list" class="btn btn-light">Cancelar</a>
+					<button style="margin: 0px 30px;" type="submit"
+						class="btnadd btn btn-primary">Aceptar</button>
+					<a href="/Insignias/list" class="btn btn-danger">Cancelar</a>
 				</form>
+
 				<div th:if="${mensaje}" class="alert alert-danger">
 					<p th:text="${mensaje}"></p>
 				</div>
