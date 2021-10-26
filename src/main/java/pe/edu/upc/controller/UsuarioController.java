@@ -19,13 +19,16 @@ import pe.edu.upc.serviceinterfaces.IUsuarioService;
 public class UsuarioController {
 	@Autowired
 	private IUsuarioService uService;
+	
 	@GetMapping("/new")
-	public String newUsuario(Model model) {
+	public String newUsuario(Model model) 
+	{
 		model.addAttribute("usuario", new Usuario());
 		return "usuario/usuario";
 	}
 	@GetMapping("/list")
-	public String listUsuarios(Model model) {
+	public String listUsuarios(Model model) 
+	{
 		try {
 			model.addAttribute("usuario", new Usuario());
 			model.addAttribute("listaUsuarios", uService.list());

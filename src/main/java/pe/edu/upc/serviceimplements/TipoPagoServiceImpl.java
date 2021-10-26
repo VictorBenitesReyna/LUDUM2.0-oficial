@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.entities.TipoPago;
+
 import pe.edu.upc.repositories.ITipoPago;
+
 import pe.edu.upc.serviceinterfaces.ITipoPagoService;
-
-
 
 @Service
 public class TipoPagoServiceImpl implements ITipoPagoService
