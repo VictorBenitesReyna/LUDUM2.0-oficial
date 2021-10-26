@@ -22,44 +22,56 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container">
-
-			<div class="d-flex">
-				<h3 class="title-content">Lista de Usuarios</h3>
-				<a th:href="@{/usuarios/new}" class="btn btn-warning">Nuevo</a>
+		<div class="content container row col-12">
+			<div class="col-1">
+				<h3></h3>
 			</div>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Nombre</th>
-						<th scope="col" class="text-center">Apellido</th>
-						<th scope="col" class="text-center">Username</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="us : ${listaUsuarios}">
-					<td class="text-center"><a class="btn btn-warning btn-xs"
-							th:href="@{/usuarios/view/} + ${us.idUsuario}"
-							th:text="${us.idUsuario}"></a></td>
-						<td class="text-center" th:text="${us.idUsuario}"></td>
-						<td class="text-center" th:text="${us.nombreUsuario}"></td>
-						<td class="text-center" th:text="${us.apellidoUsuario}"></td>
-						<td class="text-center" th:text="${us.username}"></td>
-						<td class="text-center"><a th:href="@{'/usuarios/update/' + ${us.idUsuario}}"><i class="fa fa-edit" style="color: rgb(240, 184, 15)ing;"></i></a></td>
-						<td class="text-center" align="center"><a
-							th:href="@{/usuarios/view/} + ${us.idUsuario}">
-							
-							<i class="fa fa-eye" style="color: gray;"></i>
-							</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
-		</div>
+			<div class="col-3">
+				<h3>Registrar Videojuegos</h3>
+			</div>
+			<div class="col-8 frm-registro">
+				<form th:action="@{/videojuegos/save}" method="post"
+					th:object="${videojuego}">
+					<div class="form-group">
+						<label>ID:</label> <input type="text" class="form-control"
+							readonly th:field="*{codigovideojuego}"></input>
 
+						<div class="form-group">
+							<label for="nombre">Numero Equipo:</label> <input type="text" required
+								th:field="*{numeroequipo}" class="form-control" id="numeroequipo"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('numeroequipo')}"
+								th:errors="*{numeroequipo}"></div>
+							</div>
+							<div class="form-group">
+								<label for="nombre">Nickname:</label> <input type="text" required
+									th:field="*{nickname}" class="form-control" id="nickname"></input>
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('nickname')}"
+									th:errors="*{nickname}"></div>
+							</div>
+							
+							<div class="form-group">
+								<label for="nombre">Plataforma:</label> <input type="text" required
+									th:field="*{plataforma}" class="form-control" id="plataforma"></input>
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('plataforma')}"
+									th:errors="*{plataforma}"></div>
+							</div>
+							
+							
+						
+
+					</div>
+					<button type="submit" class="btn btn-warning">Aceptar</button>
+					<a href="/videojuegos/list" class="btn btn-light">Cancelar</a>
+				</form>
+				<div th:if="${mensaje}" class="alert alert-danger">
+					<p th:text="${mensaje}"></p>
+				</div>
+			</div>
+
+		</div>
 	</div>
 
 
