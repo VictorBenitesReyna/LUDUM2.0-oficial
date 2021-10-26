@@ -16,18 +16,12 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "usuario")
-
-public class Usuario 
-{
+public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUsuario;
 	
-
-	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un caracter especial") //restricciones
-
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un caracter especial")
-
 	@Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número")
 	@Column(name = "nombreUsuario", length = 35, nullable = false)
 	private String nombreUsuario;
@@ -37,20 +31,13 @@ public class Usuario
 	@Column(name = "apellidoUsuario", nullable = false, length = 20)
 	private String apellidoUsuario;
 	
-
-	@Column(name = "password", nullable = false, length = 20)
-	private String password;
-	
-	@Column(name = "nickname", nullable = false, length = 20)
-	private String nickname;
-
 	@Column(name = "foto", nullable = true)
 	private String photoProduct;
 	
 	@Column(name = "password", nullable = false)
 	private String password;
 	
-	@Column(name = "username", nullable = false, length = 20)
+	@Column(name = "username", nullable = false)
 	private String username;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -59,18 +46,9 @@ public class Usuario
 	
 		
 	public Usuario(int idUsuario,
-
-			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un caracter especial") 
-	        @Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número") String nombreUsuario,
-			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El Apellido del Usuario no puede contener un caracter especial") 
-			@Pattern(regexp = "[^0-9]+", message = "El Apellido del Usuario no puede contener un número") String apellidoUsuario,
-			String password, String nickname) 
-	{
-
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener un caracter especial") @Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número") String nombreUsuario,
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El Apellido del Usuario no puede contener un caracter especial") @Pattern(regexp = "[^0-9]+", message = "El Apellido del Usuario no puede contener un número") String apellidoUsuario,
 			String photoProduct, String password, String username, List<Role> roles) {
-
 		super();
 		this.idUsuario = idUsuario;
 		this.nombreUsuario = nombreUsuario;
