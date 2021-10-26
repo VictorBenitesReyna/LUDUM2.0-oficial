@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
@@ -22,45 +23,28 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
+
 		<div class="content container">
 
-			<div class="d-flex">
-				<h3 class="title-content">Lista de Usuarios</h3>
-				<a th:href="@{/usuarios/new}" class="btn btn-warning">Nuevo</a>
+			<div class="detail">
+				<img class="detailimg"
+					th:if="${#strings.length(usuario.photoProduct)> 0}"
+					th:src="@{'/usuarios/uploads/' + ${usuario.photoProduct}}"
+					th:alt="${usuario.photoProduct}">
+				<div class="blend"></div>
+
+				<div class="detalles">
+					<a th:href="@{/usuarios/list}" class="volverdet" href=""><i
+						class="fa fa-arrow-left"></i></a>
+					<h2 th:text="${usuario.username}" class="prodnombre"></h2>
+				</div>
 			</div>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Nombre</th>
-						<th scope="col" class="text-center">Apellido</th>
-						<th scope="col" class="text-center">Username</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="us : ${listaUsuarios}">
-					<td class="text-center"><a class="btn btn-warning btn-xs"
-							th:href="@{/usuarios/view/} + ${us.idUsuario}"
-							th:text="${us.idUsuario}"></a></td>
-						<td class="text-center" th:text="${us.idUsuario}"></td>
-						<td class="text-center" th:text="${us.nombreUsuario}"></td>
-						<td class="text-center" th:text="${us.apellidoUsuario}"></td>
-						<td class="text-center" th:text="${us.username}"></td>
-						<td class="text-center"><a th:href="@{'/usuarios/update/' + ${us.idUsuario}}"><i class="fa fa-edit" style="color: rgb(240, 184, 15)ing;"></i></a></td>
-						<td class="text-center" align="center"><a
-							th:href="@{/usuarios/view/} + ${us.idUsuario}">
-							
-							<i class="fa fa-eye" style="color: gray;"></i>
-							</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
 		</div>
 
 	</div>
+
+
+
 
 
 	<script src="/js/popper.min.js"></script>
