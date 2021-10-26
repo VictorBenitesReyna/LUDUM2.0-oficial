@@ -16,13 +16,22 @@ import pe.edu.upc.serviceinterfaces.IUsuarioService;
 
 
 @Service
-public class UsuarioServiceImpl implements IUsuarioService {
+public class UsuarioServiceImpl implements IUsuarioService 
+{
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
 	private IUsuarioRepository uR;
 	@Override
+
+	public Integer insert(Usuario usuario) 
+	{
+		int rpta=uR.nombresExistentes(usuario.getNombreUsuario());
+		if(rpta==0) 
+		{
+			uR.save(usuario);
+
 	public Integer insert(Usuario usuario) {
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		Role role = new Role();
@@ -34,6 +43,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		if(rpta==0) {
 			usuarioRpta=uR.save(usuario);
 			return usuarioRpta.getIdUsuario();
+
 		}
 		return -1;
 	}
