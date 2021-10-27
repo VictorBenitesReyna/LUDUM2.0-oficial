@@ -35,24 +35,26 @@
 						<th scope="col" class="text-center">Nombre</th>
 						<th scope="col" class="text-center">Apellido</th>
 						<th scope="col" class="text-center">Username</th>
+						<th scope="col" class="text-center">Perfil</th>
+						<th scope="col" class="text-center">FOTO</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="us : ${listaUsuarios}">
-					<td class="text-center"><a class="btn btn-warning btn-xs"
+						<td class="text-center"><a class="btn btn-warning btn-xs"
 							th:href="@{/usuarios/view/} + ${us.idUsuario}"
 							th:text="${us.idUsuario}"></a></td>
-						<td class="text-center" th:text="${us.idUsuario}"></td>
 						<td class="text-center" th:text="${us.nombreUsuario}"></td>
 						<td class="text-center" th:text="${us.apellidoUsuario}"></td>
 						<td class="text-center" th:text="${us.username}"></td>
-						<td class="text-center"><a th:href="@{'/usuarios/update/' + ${us.idUsuario}}"><i class="fa fa-edit" style="color: rgb(240, 184, 15)ing;"></i></a></td>
+						
+						<td class="text-center"><a
+							th:href="@{'/usuarios/update/' + ${us.idUsuario}}">Editar Perfil</a></td>
+								
 						<td class="text-center" align="center"><a
-							th:href="@{/usuarios/view/} + ${us.idUsuario}">
-							
-							<i class="fa fa-eye" style="color: gray;"></i>
-							</a></td>
-					</tr>
+							th:href="@{/usuarios/view/} + ${us.idUsuario}"> <i
+								class="fa fa-eye" style="color: gray;"></i>
+						</a></td>
 				</tbody>
 			</table>
 		</div>
