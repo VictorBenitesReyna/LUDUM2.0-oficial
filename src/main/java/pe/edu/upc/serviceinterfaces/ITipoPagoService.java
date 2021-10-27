@@ -9,6 +9,7 @@ public interface ITipoPagoService
 
 	public Integer insert(TipoPago tipopago);
 	List<TipoPago> list();
+	public void delete(int idTipoPago);
    	
 }
 
