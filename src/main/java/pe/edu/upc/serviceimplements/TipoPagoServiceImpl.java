@@ -34,4 +34,10 @@ public class TipoPagoServiceImpl implements ITipoPagoService
 		return pagR.findAll();
 	}
 
+	@Override
+	public void delete(int idTipoPago) {
+		pagR.deleteById(idTipoPago);
+		
+	}
+
 }

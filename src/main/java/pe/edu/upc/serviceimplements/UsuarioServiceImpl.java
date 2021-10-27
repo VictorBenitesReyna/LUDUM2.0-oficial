@@ -62,4 +62,10 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		return op.isPresent() ? op.get() : new Usuario();
 	}
 
+	@Override
+	public Optional<Usuario> listId(int idUsuario) {
+		// TODO Auto-generated method stub
+		return uR.findById(idUsuario);
+	}
+
 }

@@ -77,7 +77,7 @@ public class ReputacionController {
 		return "reputacion/listReputacion";
 	}
 
-	@RequestMapping("/update/{id}")
+	/*@RequestMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
 		Reputacion objReputacion = rService.listarId(id);
@@ -89,5 +89,5 @@ public class ReputacionController {
 			model.addAttribute("reputacion", objReputacion);
 			return "reputacion/reputacion";
 		}
-	}
+	}*/
 }

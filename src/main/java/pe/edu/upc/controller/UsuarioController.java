@@ -3,8 +3,7 @@ package pe.edu.upc.controller;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Map;
-
-import javax.validation.Valid;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -96,7 +95,14 @@ public class UsuarioController {
 			}
 		}
 		model.addAttribute("usuario", new Usuario());
-		return "login";	
+		if(usuario.getIdUsuario()==0)
+		{
+			return "login";	
+		}else {
+			return "redirect:/usuarios/list";
+		}
+		
+		
 	}
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
@@ -152,4 +158,18 @@ public class UsuarioController {
 			return "usuario/usuario";
 		}
 	}
+	/*@RequestMapping("/modificar{id}")
+	public String irUpdate(@PathVariable int id,Model model, RedirectAttributes objRedirect)
+	{
+		Optional<Usuario> usuario = uService.listId(id);
+		if (usuario==null)
+		{
+			objRedirect.addFlashAttribute("mensaje", "Ocurrio un error");
+			return "usuario/usuario";
+		}else
+		{
+			model.addAttribute("usuario", usuario);
+			return "usuario/usuario";
+		}
+	}*/
 }
