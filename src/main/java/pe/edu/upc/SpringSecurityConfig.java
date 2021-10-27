@@ -27,6 +27,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers("/tipopagos/**").access("hasRole('ROLE_USER')")
 					.antMatchers("/videojuegos/**").access("hasRole('ROLE_USER')")
 					.antMatchers("/insignias/**").access("hasRole('ROLE_USER')")
+					.antMatchers("/partidas/**").access("hasRole('ROLE_USER')")
+					.antMatchers("/emparejamientos/**").access("hasRole('ROLE_USER')")
 					.antMatchers("/usuarios/**").permitAll()
 					.and().formLogin()
 					.successHandler(sucessHandler).loginPage("/login").loginProcessingUrl("/login")
