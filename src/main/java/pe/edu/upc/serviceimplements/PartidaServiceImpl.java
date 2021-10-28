@@ -17,8 +17,11 @@ public class PartidaServiceImpl implements IPartidaService{
 	
 	@Override
 	public Integer insert(Partida partida) {
+		int rpta = pS.partidasExistentes(partida.getIdPartida());
+		if (rpta==0) {
 		pS.save(partida);
-		return 1;
+		}
+		return rpta;
 	}
 
 	@Override
