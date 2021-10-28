@@ -55,13 +55,19 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		return flag;
 	}
 
+	// modificar 
 	@Override
-	@Transactional(readOnly = true)
-	public Usuario listarId(int idUsuario) {
+	
+	@Transactional(readOnly = true)  
+	public Usuario listarId(int idUsuario) 
+ 	       
+	{
 		Optional<Usuario> op = uR.findById(idUsuario);
 		return op.isPresent() ? op.get() : new Usuario();
 	}
-
+     
+	// hasta aca 
+	
 	@Override
 	public Optional<Usuario> listId(int idUsuario) {
 		// TODO Auto-generated method stub

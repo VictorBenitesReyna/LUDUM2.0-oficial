@@ -36,7 +36,8 @@ public class TipoPagoServiceImpl implements ITipoPagoService
 	}
 
 	@Override
-	public void delete(int idTipoPago) {
+	public void delete(int idTipoPago) 
+	{
 		pagR.deleteById(idTipoPago);
 		
 	}

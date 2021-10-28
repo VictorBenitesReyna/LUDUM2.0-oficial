@@ -54,7 +54,8 @@ public class UsuarioController {
 		try {
 			model.addAttribute("usuario", new Usuario());
 			model.addAttribute("listaUsuarios", uService.list());
-		} catch (Exception e) {
+		} catch (Exception e) 
+		{
 			model.addAttribute("error", e.getMessage());
 		}
 		return "usuario/listUsuarios";
@@ -146,10 +147,12 @@ public class UsuarioController {
 		return "usuario/listUsuarios";
 
 	}
+	// modificar
 	@RequestMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
 		Usuario objPro = uService.listarId(id);
+		
 		if (objPro == null) {
 			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
 			return "redirect:/usuarios/list";
@@ -158,6 +161,8 @@ public class UsuarioController {
 			return "usuario/usuario";
 		}
 	}
+	// hasta aqui
+	
 	/*@RequestMapping("/modificar{id}")
 	public String irUpdate(@PathVariable int id,Model model, RedirectAttributes objRedirect)
 	{
