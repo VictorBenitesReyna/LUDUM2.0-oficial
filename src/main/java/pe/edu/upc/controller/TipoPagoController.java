@@ -52,10 +52,13 @@ public class TipoPagoController
 			return "tipopago/tipopago";
 		} else {
 			int rpta = tpService.insert(tipopago);
-			if(rpta > 0) {
+			if(rpta > 0) 
+			{
 				model.addAttribute("mensaje", "Ya existe");
 				return "tipopago/tipopago";
-			} else {
+			} 
+			else 
+			{
 				model.addAttribute("mensaje","Se guardo correctamente");
 				status.setComplete();
 			}
@@ -71,3 +74,11 @@ public class TipoPagoController
 		return "tipopago/listTipoPagos";
 	}
 }
+
+
+
+
+
+
+
+

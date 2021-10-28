@@ -25,35 +25,27 @@
 		<div class="content container">
 
 			<div class="d-flex">
-				<h3 class="title-content">Lista de Reputaciones</h3>
-				<a th:href="@{/reputaciones/new}" class="btnnew btn btn-warning">Nuevo</a>
+				<h3 class="title-content">Lista de los tipos de subscripciones</h3>
+				<a th:href="@{/tiposubscripciones/new}" class="btn btn-warning">Nuevo</a>
 			</div>
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
-						<th scope="col" class="text-center">ID</th>
-						<th scope="col" class="text-center">Estado de la Reputación</th>
-						<th scope="col" class="text-center">Puntos</th>
-						<th scope="col" class="text-center">Usuario</th>
+						<th scope="col" class="text-center">Código</th>
+						<th scope="col" class="text-center">Tipo de Subscripcion</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="p: ${listaReputacion}">
-						<td class="text-center"><a class="btn btn-warning btn-xs"
-							th:href="@{/reputaciones/view/} + ${p.idReputacion}"
-							th:text="${p.idReputacion}"></a></td>
-							
-						<td class="text-center" th:text="${p.estadoReputacion}"></td>
-						<td class="text-center" th:text="${p.puntos}"></td>
-						<td class="text-center" th:text="${p.usuario.nombreUsuario}"></td>
+					<tr th:each="tp : ${listaTipoSubscripciones}"> 
+						<td class="text-center" th:text="${tp.idTipoSubscripcion}"></td>
+						<td class="text-center" th:text="${tp.nombreTipoSubscripcion}"></td>
 					</tr>
 				</tbody>
 			</table>
-			<div th:if="${mensaje}" class="alert alert-danger">
+		</div>
+		<div th:if="${mensaje}" class="alert alert-danger">
 			<p th:text="${mensaje}"></p>
 		</div>
-		</div>
-		
 
 	</div>
 
