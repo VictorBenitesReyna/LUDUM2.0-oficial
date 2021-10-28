@@ -32,43 +32,53 @@
 				<thead class="thead-light">
 					<tr>
 						<th scope="col" class="text-center">Código</th>
-						
+
 						<th scope="col" class="text-center">Username</th>
 						<th scope="col" class="text-center">TipoPago</th>
 						<th scope="col" class="text-center">TipoSubscripcion</th>
 						<th scope="col" class="text-center">FechaActivacion</th>
 						<th scope="col" class="text-center">EstadoPago</th>
-						
+
 						<th scope="col" class="text-center">Monto</th>
-						
+
 						<th scope="col" class="text-center">Duracion</th>
-						
+
+						<th scope="col" class="text-center">Eliminar</th>
+
+						<th scope="col" class="text-center">Editar Subscripción</th>
+
 					</tr>
 				</thead>
 				<tbody>
+
 					<tr th:each="subx : ${listaSubscripcion}">
-					<td class="text-center"><a class="btn btn-warning btn-xs"
+						<td class="text-center"><a class="btn btn-warning btn-xs"
 							th:href="@{/subscripciones/view/} + ${subx.idSubscripcion}"
 							th:text="${subx.idSubscripcion}"></a></td>
-							
+
 						<td class="text-center" th:text="${subx.usuario.nombreUsuario}"></td>
-						
+
 						<td class="text-center" th:text="${subx.tipoPago.nombreTipoPago}"></td>
-						
-						<td class="text-center" th:text="${subx.tipoSubscripcion.nombreTipoSubscripcion}"></td>
-							
+
+						<td class="text-center"
+							th:text="${subx.tipoSubscripcion.nombreTipoSubscripcion}"></td>
+
 						<td th:text="${#dates.format(subx.fechaActivacion,'dd/MM/yyyy')}"></td>
-						
+
 						<td class="text-center" th:text="${subx.estadoPago}"></td>
-						
+
 						<td class="text-center" th:text="${subx.precio}"></td>
-						
+
 						<td class="text-center" th:text="${subx.tiempoDuracion}"></td>
-						
-						
-						
-						
-						
+
+						<td class="text-center"><a
+							th:href="@{/subscripciones/delete?id=}+${subx.idSubscripcion}">
+								<i class="iconf fa fa-trash" style="color: yellow"></i>
+						</a>
+						<td class="text-center"><a
+							th:href="@{'/subscripciones/update/' + ${subx.idSubscripcion}}">Re
+								Subscripcion</a></td>
+
 					</tr>
 				</tbody>
 			</table>
