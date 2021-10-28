@@ -27,46 +27,38 @@
 				<h3></h3>
 			</div>
 			<div class="col-3">
-				<h3>Registrar Videojuegos</h3>
+				<h3>Registrar Partida</h3>
 			</div>
 			<div class="col-8 frm-registro">
-				<form th:action="@{/videojuegos/save}" method="post"
-					th:object="${videojuego}">
+				<form th:action="@{/partidas/save}" method="post"
+					th:object="${partida}">
 					<div class="form-group">
 						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{codigovideojuego}"></input>
+							readonly th:field="*{idPartida}"></input>
 
 						<div class="form-group">
-							<label for="nombre">Numero Equipo:</label> <input type="text"
-								required th:field="*{numeroequipo}" class="form-control"
-								id="numeroequipo"></input>
+							<label for="EstadoPartida">Estado Partida:</label> <input type="text"
+								required th:field="*{EstadoPartida}" class="form-control"
+								id="EstadoPartida"></input>
 							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('numeroequipo')}"
-								th:errors="*{numeroequipo}"></div>
+								th:if="${#fields.hasErrors('EstadoPartida')}"
+								th:errors="*{EstadoPartida}"></div>
 						</div>
 						
 						<div class="form-group">
-							<label for="nombre">Nickname:</label> <input type="text" required
-								th:field="*{nickname}" class="form-control" id="nickname"></input>
+							<label for="EstadoSinError">Estado Sin Error:</label> <input type="text" required
+								th:field="*{EstadoSinError}" class="form-control" id="EstadoSinError"></input>
 							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
+								th:if="${#fields.hasErrors('EstadoSinError')}" th:errors="*{EstadoSinError}"></div>
 						</div>
 
-						<div class="form-group">
-							<label for="nombre">Videojuego:</label> <input type="text"
-								required th:field="*{plataforma}" class="form-control"
-								id="plataforma"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('plataforma')}"
-								th:errors="*{plataforma}"></div>
-						</div>
 
 
 
 
 					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="/videojuegos/list" class="btn btn-light">Cancelar</a>
+					<a href="/partidas/list" class="btn btn-light">Cancelar</a>
 				</form>
 				<div th:if="${mensaje}" class="alert alert-danger">
 					<p th:text="${mensaje}"></p>

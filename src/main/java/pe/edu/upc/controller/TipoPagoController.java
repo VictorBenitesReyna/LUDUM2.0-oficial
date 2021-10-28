@@ -8,10 +8,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.serviceinterfaces.ITipoPagoService;
 import pe.edu.upc.entities.TipoPago;
+import pe.edu.upc.serviceinterfaces.ITipoPagoService;
 
 @Controller
 @RequestMapping("/tipopagos")
@@ -65,6 +66,12 @@ public class TipoPagoController
 		
 		model.addAttribute("tipopago",new TipoPago());
 		return "redirect:/tipopagos/list";
+	}
+	@RequestMapping("/delete")
+	public String deleteTipoPago(Model model, @RequestParam(value = "id") Integer id) {
+		tpService.delete(id);
+		model.addAttribute("listaTipoPagos", tpService.list());
+		return "tipopago/listTipoPagos";
 	}
 }
 

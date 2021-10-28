@@ -22,58 +22,38 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container row col-12">
-			<div class="col-1">
-				<h3></h3>
+		<div class="content container">
+
+			<div class="d-flex">
+				<h3 class="title-content">Lista de Insignias</h3>
+				<a th:href="@{/insignias/new}" class="btnnew btn btn-warning">Nuevo</a>
 			</div>
-			<div class="col-3">
-				<h3>Registrar Videojuegos</h3>
-			</div>
-			<div class="col-8 frm-registro">
-				<form th:action="@{/videojuegos/save}" method="post"
-					th:object="${videojuego}">
-					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{codigovideojuego}"></input>
-
-						<div class="form-group">
-							<label for="nombre">Numero Equipo:</label> <input type="text"
-								required th:field="*{numeroequipo}" class="form-control"
-								id="numeroequipo"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('numeroequipo')}"
-								th:errors="*{numeroequipo}"></div>
-						</div>
-						
-						<div class="form-group">
-							<label for="nombre">Nickname:</label> <input type="text" required
-								th:field="*{nickname}" class="form-control" id="nickname"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
-						</div>
-
-						<div class="form-group">
-							<label for="nombre">Videojuego:</label> <input type="text"
-								required th:field="*{plataforma}" class="form-control"
-								id="plataforma"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('plataforma')}"
-								th:errors="*{plataforma}"></div>
-						</div>
-
-
-
-
-					</div>
-					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="/videojuegos/list" class="btn btn-light">Cancelar</a>
-				</form>
-				<div th:if="${mensaje}" class="alert alert-danger">
-					<p th:text="${mensaje}"></p>
-				</div>
-			</div>
-
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col" class="text-center">Codigo Insignia</th>
+						<th scope="col" class="text-center">Nombre</th>
+						<th scope="col" class="text-center">Puntaje</th>
+						<th scope="col" class="text-center">Videojuegos</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p: ${listaInsignia}">
+						<td class="text-center"><a class="btn btn-warning btn-xs"
+							th:href="@{/insignias/view/} + ${p.codigoInsignia}"
+							th:text="${p.codigoInsignia}"></a></td>
+						<td class="text-center" th:text="${p.nombre}"></td>
+						<td class="text-center" th:text="${p.puntaje}"></td>
+						<td class="text-center" th:text="${p.videojuego.plataforma}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div th:if="${mensaje}" class="alert alert-danger">
+			<p th:text="${mensaje}"></p>
 		</div>
+		</div>
+		
+
 	</div>
 
 

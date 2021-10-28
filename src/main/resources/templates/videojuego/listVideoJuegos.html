@@ -34,7 +34,7 @@
 						<th scope="col" class="text-center">Código</th>
 						<th scope="col" class="text-center">Numero de equipo</th>
 						<th scope="col" class="text-center">Nickname</th>
-						<th scope="col" class="text-center">Plataforma</th>
+						<th scope="col" class="text-center">Videojuego</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -43,6 +43,10 @@
 						<td class="text-center" th:text="${cat.numeroequipo}"></td>
 						<td class="text-center" th:text="${cat.nickname}"></td>
 						<td class="text-center" th:text="${cat.plataforma}"></td>
+						<td class="text-center" align="center"><a
+							th:href="@{/insignias/view/} + ${cat.codigovideojuego}"> <i
+								class="fa fa-eye" style="color: gray;"></i>
+						</a></td>
 					</tr>
 				</tbody>
 			</table>

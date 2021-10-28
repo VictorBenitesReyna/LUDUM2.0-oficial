@@ -23,51 +23,48 @@
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
 		<div class="content container row col-12">
-			<div class="col-1">
-				<h3></h3>
+			<div class="col-6">
+				<h3>Registrar Emparejamiento</h3>
 			</div>
-			<div class="col-3">
-				<h3>Registrar Videojuegos</h3>
-			</div>
-			<div class="col-8 frm-registro">
-				<form th:action="@{/videojuegos/save}" method="post"
-					th:object="${videojuego}">
-					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{codigovideojuego}"></input>
+			<div class="col-6 frm-registro">
+				<form th:action="@{/emparejamientos/save}" method="post" class="row"
+					th:object="${emparejamiento}" enctype="multipart/form-data">
 
 						<div class="form-group">
-							<label for="nombre">Numero Equipo:</label> <input type="text"
-								required th:field="*{numeroequipo}" class="form-control"
-								id="numeroequipo"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('numeroequipo')}"
-								th:errors="*{numeroequipo}"></div>
-						</div>
+						
+							<label for="idrace">ID:</label> <input type="text" readonly
+								class="form-control" th:field="*{idEmparejamiento}"></input>
+						
 						
 						<div class="form-group">
-							<label for="nombre">Nickname:</label> <input type="text" required
-								th:field="*{nickname}" class="form-control" id="nickname"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
+							<label for="usuario">Usuario:</label> <select
+								class="form-control" th:field="*{usuario.idUsuario}">
+								<option th:each="u: ${listaUsuarios}"
+									th:value="${u.idUsuario}" th:text="${u.nombreUsuario}"
+									th:selected="(${u.idUsuario} == *{usuario.idUsuario})"></option>
+							</select>
 						</div>
+
+						
 
 						<div class="form-group">
-							<label for="nombre">Videojuego:</label> <input type="text"
-								required th:field="*{plataforma}" class="form-control"
-								id="plataforma"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('plataforma')}"
-								th:errors="*{plataforma}"></div>
+							<label for="partida">Partida:</label> <select
+								class="form-control" th:field="*{partida.idPartida}">
+								<option th:each="p: ${listapartidas}"
+									th:value="${p.idPartida}" th:text="${p.idPartida}"
+									th:selected="(${p.idPartida} == *{partida.idPartida})"></option>
+							</select>
 						</div>
+						
+						
+						</div>
+					
 
-
-
-
-					</div>
-					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="/videojuegos/list" class="btn btn-light">Cancelar</a>
+					<button style="margin: 0px 30px;" type="submit"
+						class="btnadd btn btn-primary">Aceptar</button>
+					<a href="/emparejamientos/list" class="btn btn-danger">Cancelar</a>
 				</form>
+
 				<div th:if="${mensaje}" class="alert alert-danger">
 					<p th:text="${mensaje}"></p>
 				</div>

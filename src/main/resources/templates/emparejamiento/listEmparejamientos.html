@@ -22,58 +22,45 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container row col-12">
-			<div class="col-1">
-				<h3></h3>
-			</div>
-			<div class="col-3">
-				<h3>Registrar Videojuegos</h3>
-			</div>
-			<div class="col-8 frm-registro">
-				<form th:action="@{/videojuegos/save}" method="post"
-					th:object="${videojuego}">
-					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{codigovideojuego}"></input>
+		<div class="content container">
 
-						<div class="form-group">
-							<label for="nombre">Numero Equipo:</label> <input type="text"
-								required th:field="*{numeroequipo}" class="form-control"
-								id="numeroequipo"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('numeroequipo')}"
-								th:errors="*{numeroequipo}"></div>
-						</div>
+			<div class="d-flex">
+				<h3 class="title-content">Lista de Emparejamientos</h3>
+				<a th:href="@{/emparejamientos/new}" class="btnnew btn btn-warning">Nuevo</a>
+			</div>
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col" class="text-center">ID</th>
+						<th scope="col" class="text-center">Usuario</th>
+						<th scope="col" class="text-center">Partida</th>
+					</tr>
+				</thead>
+				<tbody> <!--  -->
+					<tr th:each="e: ${listaEmparejamientos}">
+						<td class="text-center"><a class="btn btn-warning btn-xs"
+							th:href="@{/emparejamientos/view/} + ${e.idEmparejamiento}"
+							th:text="${e.idEmparejamiento}"></a></td>
+						<td class="text-center" th:text="${e.usuario.idUsuario}"></td>
+						<td class="text-center" th:text="${e.partida.idPartida}"></td>
+						<!--  -->
+						<!-- <td class="text-center"><a th:href="@{'/products/update/' + ${e.idEmparejamiento]}"><i class="fa fa-edit" style="color: rgb(240, 184, 15)ing;"></i></a></td>
+						<td class="text-center" align="center"><a
+							th:href="@{/emparejamientos/view/} + ${e.idEmparejamiento}">
+							
+							<i class="fa fa-eye" style="color: gray;"></i>
+							</a></td> -->
 						
-						<div class="form-group">
-							<label for="nombre">Nickname:</label> <input type="text" required
-								th:field="*{nickname}" class="form-control" id="nickname"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
-						</div>
-
-						<div class="form-group">
-							<label for="nombre">Videojuego:</label> <input type="text"
-								required th:field="*{plataforma}" class="form-control"
-								id="plataforma"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('plataforma')}"
-								th:errors="*{plataforma}"></div>
-						</div>
-
-
-
-
-					</div>
-					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="/videojuegos/list" class="btn btn-light">Cancelar</a>
-				</form>
-				<div th:if="${mensaje}" class="alert alert-danger">
-					<p th:text="${mensaje}"></p>
-				</div>
-			</div>
-
+						<!--  -->
+					</tr>
+				</tbody>
+			</table>
+			<div th:if="${mensaje}" class="alert alert-danger">
+			<p th:text="${mensaje}"></p>
 		</div>
+		</div>
+		
+
 	</div>
 
 
