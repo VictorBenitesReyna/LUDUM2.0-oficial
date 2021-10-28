@@ -33,5 +33,11 @@ public class InsigniaServiceImpl implements IInsigniaService {
 		Optional<Insignia> op = iR.findById(codigoInsignia);
 		return op.isPresent() ? op.get() : new Insignia();
 	}
+	
+	@Override
+	public List<Insignia> listByVideojuego(int codigovideojuego) {
+		return iR.findByCodigovideojuegoCodigovideojuego(codigovideojuego);
+	}
+	
 
 }
