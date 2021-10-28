@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.entities.VideoJuego;
 
 @Repository
-public interface IVideoJuegoRepository extends JpaRepository<VideoJuego, Integer> {
+public interface IVideoJuegoRepository extends JpaRepository<VideoJuego, Integer> 
+{
 	
 	@Query("select count(c.plataforma) from VideoJuego c where c.plataforma=:plataforma")
 	public int plataformasExistentes(@Param("plataforma") String plataforma);

@@ -16,9 +16,14 @@ public class TipoSubscripcionServiceImpl implements ITipoSubscripcionService
 	private ITipoSubscripcion uTSUB;
 
 	@Override
-	public Integer insert(TipoSubscripcion tiposubscripcion) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer insert(TipoSubscripcion tiposubscripcion) 
+	{
+		int rpta = uTSUB.nombresTipoSubscripcionesExistentes(tiposubscripcion.getNombreTipoSubscripcion());
+		if (rpta==0)
+		{
+			uTSUB.save(tiposubscripcion);
+		}
+		return rpta;
 	}
 
 	@Override

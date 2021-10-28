@@ -23,26 +23,33 @@ import pe.edu.upc.serviceinterfaces.IUsuarioService;
 
 @Controller
 @RequestMapping("/reputaciones")
-public class ReputacionController {
+public class ReputacionController 
+{
 	@Autowired
 	private IReputacionService rService;
 	@Autowired
 	private IUsuarioService uService;
 
 	@GetMapping("/new")
-	public String newReputacion(Model model) {
+	public String newReputacion(Model model) 
+	{
 		model.addAttribute("reputacion", new Reputacion());
+		
 		model.addAttribute("listaUsuarios", uService.list());
+		
 		model.addAttribute("reputacion", new Reputacion());
 		return "reputacion/reputacion";
 	}
 
 	@GetMapping("/list")
-	public String listReputacion(Model model) {
+	public String listReputacion(Model model) 
+	{
 		try {
 			model.addAttribute("reputacion", new Reputacion());
 			model.addAttribute("listaReputacion", rService.list());
-		} catch (Exception e) {
+		}
+		catch (Exception e) 
+		{
 			model.addAttribute("error", e.getMessage());
 		}
 		return "reputacion/listReputacion";
@@ -50,8 +57,10 @@ public class ReputacionController {
 
 	@RequestMapping("/save")
 	public String insertReputacion(@ModelAttribute @Valid Reputacion objReputacion, BindingResult binRes, Model model,
-			SessionStatus status) throws ParseException {
-		if (binRes.hasErrors()) {
+			SessionStatus status) throws ParseException 
+	{
+		if (binRes.hasErrors()) 
+		{
 			model.addAttribute("listaReputacion", rService.list());
 			return "reputacion/reputacion";
 		}
@@ -65,14 +74,16 @@ public class ReputacionController {
 	}
 
 	@RequestMapping("/list")
-	public String listReputacion(Map<String, Object> model) {
+	public String listReputacion(Map<String, Object> model) 
+	{
 		model.put("listaReputacion", rService.list());
 		return "reputacion/listReputacion";
 
 	}
 
 	@RequestMapping("/listarId")
-	public String listarId(Map<String, Object> model, @ModelAttribute Reputacion rep) {
+	public String listarId(Map<String, Object> model, @ModelAttribute Reputacion rep) 
+	{
 		rService.listarId(rep.getIdReputacion());
 		return "reputacion/listReputacion";
 	}

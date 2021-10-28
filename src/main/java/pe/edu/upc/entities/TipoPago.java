@@ -23,7 +23,8 @@ public class TipoPago
 	private String nombreTipoPago;
 
 	public TipoPago(int idTipoPago,
-			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Los tipos de pago no puede contener un caracter especial") @Pattern(regexp = "[^0-9]+", message = "Los tipos de pago no puede contener un número") String nombreTipoPago) 
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Los tipos de pago no puede contener un caracter especial") 
+			@Pattern(regexp = "[^0-9]+", message = "Los tipos de pago no puede contener un número") String nombreTipoPago) 
 	{
 		super();
 		this.idTipoPago = idTipoPago;

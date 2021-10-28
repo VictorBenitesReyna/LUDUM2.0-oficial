@@ -16,6 +16,7 @@ public class TipoPagoServiceImpl implements ITipoPagoService
 {
 	@Autowired
 	private ITipoPago pagR;
+	
 	@Override
 	public Integer insert(TipoPago tipopago) 
 	{

@@ -38,11 +38,13 @@
 						</div>
 
 						<div class="form-group">
-							<label for="nombre">Puntaje:</label> <input type="text" required
+							<label for="nombre">Puntaje:</label> 
+							<input type="text" required
 								th:field="*{puntos}" class="form-control" id="puntos"></input>
 						</div>
 						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('puntos')}" th:errors="*{puntos}"></div>
+							th:if="${#fields.hasErrors('puntos')}" th:errors="*{puntos}">
+							</div>
 
 						<div class="form-group">
 							<label for="estado">Estado de la Reputacion:</label> <input
