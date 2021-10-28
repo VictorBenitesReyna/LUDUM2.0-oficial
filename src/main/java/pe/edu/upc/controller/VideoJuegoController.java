@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
@@ -39,7 +40,7 @@ public class VideoJuegoController {
     }
 
     @PostMapping("/save")
-    public String saveMarca(@Valid VideoJuego videojuego, BindingResult result, Model model, SessionStatus status)
+    public String saveMarca(@ModelAttribute("videojuego") @Valid VideoJuego videojuego, BindingResult result, Model model, SessionStatus status)
             throws Exception {
         if (result.hasErrors()) {
             return "videojuego/videojuego";

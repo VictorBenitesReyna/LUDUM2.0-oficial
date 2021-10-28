@@ -17,11 +17,8 @@ public class VideoJuegoServiceImpl implements IVideoJuegoService {
 	private IVideoJuegoRepository vR;
 	@Override
 	public Integer insert(VideoJuego videojuego) {
-		int rpta = vR.plataformasExistentes(videojuego.getPlataforma());
-		if (rpta == 0) {
-			vR.save(videojuego);
-		}
-		return rpta;
+		vR.save(videojuego);
+		return 1;
 
 	}
 
