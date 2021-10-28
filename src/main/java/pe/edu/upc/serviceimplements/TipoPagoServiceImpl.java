@@ -6,16 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.entities.TipoPago;
+
 import pe.edu.upc.repositories.ITipoPago;
+
 import pe.edu.upc.serviceinterfaces.ITipoPagoService;
-
-
 
 @Service
 public class TipoPagoServiceImpl implements ITipoPagoService
 {
 	@Autowired
 	private ITipoPago pagR;
+	
 	@Override
 	public Integer insert(TipoPago tipopago) 
 	{
@@ -32,6 +33,12 @@ public class TipoPagoServiceImpl implements ITipoPagoService
 	{
 		
 		return pagR.findAll();
+	}
+
+	@Override
+	public void delete(int idTipoPago) {
+		pagR.deleteById(idTipoPago);
+		
 	}
 
 }

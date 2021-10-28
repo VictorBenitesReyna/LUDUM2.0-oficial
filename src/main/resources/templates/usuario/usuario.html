@@ -31,7 +31,7 @@
 			</div>
 			<div class="col-8 frm-registro">
 				<form th:action="@{/usuarios/save}" method="post"
-					th:object="${usuario}">
+					th:object="${usuario}" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>ID:</label> <input type="text" class="form-control"
 							readonly th:field="*{idUsuario}"></input>
@@ -51,18 +51,25 @@
 								th:errors="*{apellidoUsuario}"></div>
 						</div>
 						<div class="form-group">
-							<label for="nombre">Nick-Name:</label> <input type="text"
-								required th:field="*{nickname}" class="form-control"
-								id="nickname"></input>
+							<label for="nombre">Username:</label> <input style="color: black"
+								type="text" required th:field="*{username}" class="form-control"
+								id="username"></input>
 							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
+								th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
 						</div>
 						<div class="form-group">
-							<label for="nombre">Password:</label> <input type="text"
-								required th:field="*{password}" class="form-control"
-								id="password"></input>
+							<label for="nombre">Password:</label> <input type="text" required
+								th:field="*{password}" class="form-control" id="password"></input>
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+						</div>
+						<div class="form-group">
+							<label for="file" class="">FOTO:</label>
+							<div class="col-sm-6">
+								<input type="file" name="file" class="form-control"
+									th:text="${usuario.photoProduct}" />
+							</div>
+
 						</div>
 
 					</div>

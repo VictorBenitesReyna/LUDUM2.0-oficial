@@ -12,7 +12,9 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "reputacion")
-public class Reputacion {
+public class Reputacion 
+{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idReputacion;
@@ -21,8 +23,10 @@ public class Reputacion {
 	@Pattern(regexp = "[^0-9]+", message = "El estado de la reputacion no puede contener un número")
 	@Column(name = "estadoReputacion", nullable = false, length = 20)
 	private String estadoReputacion;
+	
 	@Column(name = "puntos", nullable = false)
 	private int puntos;
+	
 	@OneToOne
 	@JoinColumn(name = "codigoUsuario", nullable = false)
 	private Usuario usuario;

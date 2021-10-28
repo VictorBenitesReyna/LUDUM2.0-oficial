@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.entities.Reputacion;
 
 @Repository
-public interface IReputacion extends JpaRepository<Reputacion, Integer> {
+public interface IReputacionRepository extends JpaRepository<Reputacion, Integer> 
+{
 	@Query("select count(l.estadoReputacion) from Reputacion l where l.estadoReputacion=:repu")
 	public int buscarProducto(@Param("repu") String reputacion);
 }

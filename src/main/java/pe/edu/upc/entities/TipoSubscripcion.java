@@ -11,7 +11,6 @@ import javax.validation.constraints.Pattern;
 @Entity
 @Table(name = "tiposubscripcion")
 
-
 public class TipoSubscripcion 
 {
 	@Id
@@ -24,13 +23,16 @@ public class TipoSubscripcion
 	private String nombreTipoSubscripcion;
 
 	public TipoSubscripcion(int idTipoSubscripcion,
-			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del tipo de subscripcion no puede contener un caracter especial") @Pattern(regexp = "[^0-9]+", message = "El nombre del tipo subscripcion no puede contener un número") String nombreTipoSubscripcion) {
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del tipo de subscripcion no puede contener un caracter especial") 
+	        @Pattern(regexp = "[^0-9]+", message = "El nombre del tipo subscripcion no puede contener un número") String nombreTipoSubscripcion) 
+	{
 		super();
 		this.idTipoSubscripcion = idTipoSubscripcion;
 		this.nombreTipoSubscripcion = nombreTipoSubscripcion;
 	}
 
-	public TipoSubscripcion() {
+	public TipoSubscripcion() 
+	{
 		super();
 		// TODO Auto-generated constructor stub
 	}
