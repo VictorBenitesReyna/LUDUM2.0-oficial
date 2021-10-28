@@ -11,8 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Subscripcion;
 import pe.edu.upc.serviceinterfaces.ISubscripcionService;
@@ -93,6 +96,33 @@ public class SubscripcionController
 	{
 		subService.listarID(sub.getIdSubscripcion());
 		return "subscripcion/listSubscripcion";
+	}
+	
+	@RequestMapping("/delete")
+	public String deleteSubscripcion(Model model, @RequestParam(value = "id") Integer id) 
+	{
+		subService.delete(id);
+		model.addAttribute("listaTipoSubscripcion", subService.list());
+		return "subscripcion/listSubscripcion";
+	}
+	
+	@RequestMapping("/update/{id}")
+	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) 
+	{
+		Subscripcion objPro = subService.listarID(id);
+		
+		model.addAttribute("listaUsuarios", uService.list());
+		model.addAttribute("listaTipoPago", tpService.list());
+		model.addAttribute("listaTipoSubscripcion", tsubService.list());
+		
+		if (objPro == null) {
+			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
+			return "redirect:/subscripciones/list";
+		
+		} else {
+			model.addAttribute("subscripcion", objPro);
+			return "subscripcion/subscripcion";
+		}
 	}
 	
 }

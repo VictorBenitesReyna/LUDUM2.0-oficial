@@ -68,7 +68,8 @@ public class TipoPagoController
 		return "redirect:/tipopagos/list";
 	}
 	@RequestMapping("/delete")
-	public String deleteTipoPago(Model model, @RequestParam(value = "id") Integer id) {
+	public String deleteTipoPago(Model model, @RequestParam(value = "id") Integer id) 
+	{
 		tpService.delete(id);
 		model.addAttribute("listaTipoPagos", tpService.list());
 		return "tipopago/listTipoPagos";

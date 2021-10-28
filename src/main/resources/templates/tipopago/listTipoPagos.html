@@ -37,12 +37,15 @@
 					</tr>
 				</thead>
 				<tbody>
+				
 					<tr th:each="tp : ${listaTipoPagos}"> 
 						<td class="text-center" th:text="${tp.idTipoPago}"></td>
 						<td class="text-center" th:text="${tp.nombreTipoPago}"></td>
+						
 						<td class="text-center"><a
 							th:href="@{/tipopagos/delete?id=}+${tp.idTipoPago}"> <i
 								class="iconf fa fa-trash" style="color: yellow"></i>
+								
 						</a></td>
 					</tr>
 				</tbody>

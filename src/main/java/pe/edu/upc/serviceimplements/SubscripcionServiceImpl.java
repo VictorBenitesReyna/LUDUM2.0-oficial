@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entities.Subscripcion;
 import pe.edu.upc.repositories.ISubscripcionRepository;
@@ -38,11 +39,33 @@ public class SubscripcionServiceImpl implements ISubscripcionService
 	{
 		return rSUBSCRIP.findAll();
 	}
+	
+    @Override
+	@Transactional(readOnly = true)  
+	public 	Subscripcion listarID(int idSubscripcion)
+	{
+		Optional<Subscripcion> op = rSUBSCRIP.findById(idSubscripcion);
+		return op.isPresent() ? op.get() : new Subscripcion();
+	}
 
+    /*
 	@Override
 	public Subscripcion listarID(int idSubscripcion) 
 	{
 		Optional<Subscripcion> op =rSUBSCRIP.findById(idSubscripcion);
 		return op.isPresent() ? op.get() : new Subscripcion();
+	}
+	*/
+
+	@Override
+	public void delete(int idSubscripcion) 
+	{
+		rSUBSCRIP.deleteById(idSubscripcion);	
+	}
+
+	@Override
+	public Optional<Subscripcion> listId(int idSubscripcion) 
+	{
+		return rSUBSCRIP.findById(idSubscripcion);
 	}
 }

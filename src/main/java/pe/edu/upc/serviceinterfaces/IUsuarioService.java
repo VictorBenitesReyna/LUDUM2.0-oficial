@@ -9,7 +9,10 @@ public interface IUsuarioService
 {
 	public Integer insert(Usuario usuario);
 	List<Usuario> list();
-	public boolean modificar(Usuario usuario);
-	Usuario listarId(int idUsuario);
+	
+	public boolean modificar(Usuario usuario); 
+	
+	Usuario listarId(int idUsuario);  // modificar
+	
 	Optional<Usuario> listId(int idUsuario);
 }
