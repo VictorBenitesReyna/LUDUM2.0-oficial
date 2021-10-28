@@ -1,6 +1,7 @@
 package pe.edu.upc.controller;
 
 import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Insignia;
+import pe.edu.upc.entities.VideoJuego;
 import pe.edu.upc.serviceinterfaces.IInsigniaService;
 import pe.edu.upc.serviceinterfaces.IVideoJuegoService;
 
@@ -61,6 +63,24 @@ public class InsigniaController {
 			model.addAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/insignias/new";
 		}
+	}
+	@GetMapping(value = "/view/{codigovideojuego}")
+	public String view(@PathVariable(value = "codigovideojuego") int codigovideojuego, Map<String, Object> model, RedirectAttributes flash) {
+
+		VideoJuego videojuego = vService.listId(codigovideojuego).get();
+
+		
+		if (videojuego == null) {
+			flash.addFlashAttribute("error", "El usuario no existe en la base de datos");
+			return "videojuego/listVideoJuegos";
+		}
+		List<Insignia> listainsignias=iService.listByVideojuego(codigovideojuego);
+		if (listainsignias == null) {
+			flash.addFlashAttribute("error", "El usuario no existe en la base de datos");
+			return "videojuego/listVideoJuegos";
+		}
+		model.put("listaInsignia", listainsignias);
+		return "insignia/listInsignia";
 	}
 
 	@RequestMapping("/list")

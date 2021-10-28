@@ -11,5 +11,7 @@ public interface IInsigniaService {
 	public boolean insert(Insignia insignia);
 	List<Insignia> list();
 	Insignia listarId(int codigoInsignia);
+	List<Insignia> listByVideojuego(int codigovideojuego);
+	
 	
 }
