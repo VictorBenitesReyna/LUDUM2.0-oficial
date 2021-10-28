@@ -102,7 +102,7 @@ public class SubscripcionController
 	public String deleteSubscripcion(Model model, @RequestParam(value = "id") Integer id) 
 	{
 		subService.delete(id);
-		model.addAttribute("listaTipoSubscripcion", subService.list());
+		model.addAttribute("listaSubscripcion", subService.list());
 		return "subscripcion/listSubscripcion";
 	}
 	
