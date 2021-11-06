@@ -1,9 +1,12 @@
 package pe.edu.upc.serviceimplements;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.entities.Role;
+import pe.edu.upc.entities.Usuario;
 import pe.edu.upc.repositories.IRoleRepository;
 import pe.edu.upc.serviceinterfaces.IRoleService;
 
@@ -19,6 +22,10 @@ public class RoleServiceImpl implements IRoleService {
 			return false;
 		else
 			return true;
+	}
+	@Override
+	public List<Role> list() {
+		return roleRepository.findAll();
 	}
 
 }

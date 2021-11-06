@@ -12,5 +12,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
 	@Query("select count(c.username) from Usuario c where c.username=:username")
 	public int nombresExistentes(@Param("username") String username);
+	@Query("select count(c.idUsuario) from Usuario c where c.idUsuario=:idusuario")
+	public int idExistentes(@Param("idusuario") int idUsuario);
 	public Usuario findByUsername(String username);
 }

@@ -13,13 +13,18 @@ import pe.edu.upc.serviceinterfaces.IVideoJuegoService;
 
 @Service
 public class VideoJuegoServiceImpl implements IVideoJuegoService {
-	@Autowired
+	@Autowired	
 	private IVideoJuegoRepository vR;
 	@Override
 	public Integer insert(VideoJuego videojuego) {
-		vR.save(videojuego);
-		return 1;
-
+		VideoJuego videojuegoRpta= new VideoJuego();
+		int rpta= vR.findByIdVideojuego(videojuego.getCodigovideojuego());
+		if(rpta == 0)
+		{
+			videojuegoRpta=vR.save(videojuego);
+			return videojuegoRpta.getCodigovideojuego();
+		}
+		return -1;
 	}
 
 	@Override

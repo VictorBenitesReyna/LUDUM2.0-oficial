@@ -68,4 +68,10 @@ public class SubscripcionServiceImpl implements ISubscripcionService
 	{
 		return rSUBSCRIP.findById(idSubscripcion);
 	}
+
+	@Override
+	public List<Subscripcion> findByTipoSubscripcionIdTipoSubscripcion(int id) {
+		// TODO Auto-generated method stub
+		return rSUBSCRIP.findByTipoSubscripcionIdTipoSubscripcion(id);
+	}
 }

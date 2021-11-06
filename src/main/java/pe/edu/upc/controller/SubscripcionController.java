@@ -18,10 +18,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Subscripcion;
+import pe.edu.upc.entities.TipoSubscripcion;
 import pe.edu.upc.serviceinterfaces.ISubscripcionService;
-import pe.edu.upc.serviceinterfaces.IUsuarioService;
 import pe.edu.upc.serviceinterfaces.ITipoPagoService;
 import pe.edu.upc.serviceinterfaces.ITipoSubscripcionService;
+import pe.edu.upc.serviceinterfaces.IUsuarioService;
 
 @Controller
 @RequestMapping("/subscripciones")
@@ -38,6 +39,7 @@ public class SubscripcionController
 	
 	@Autowired
 	private ITipoSubscripcionService tsubService;
+	
 	
 	@GetMapping("/new")
 	public String newSubscripcion(Model model)
@@ -60,6 +62,26 @@ public class SubscripcionController
 		{
 			model.addAttribute("subscripcion", new Subscripcion());
 			model.addAttribute("listaSubscripcion", subService.list());
+			model.addAttribute("listaTipoSubscripcion", tsubService.list());
+			model.addAttribute("tiposubscripcion",new TipoSubscripcion());
+		}
+		catch (Exception e)
+		{
+			model.addAttribute("error", e.getMessage());
+		}
+		return "subscripcion/listSubscripcion";
+	}
+	
+	@RequestMapping("/buscar")
+	public String buscarPorTipoSubscripcion(@ModelAttribute("tiposubscripcion") @Valid TipoSubscripcion objTs, BindingResult binRes, Model model,
+			SessionStatus status)
+	{
+		try
+		{
+			model.addAttribute("subscripcion", new Subscripcion());
+			model.addAttribute("listaTipoSubscripcion", tsubService.list());
+			model.addAttribute("listaSubscripcion", subService.findByTipoSubscripcionIdTipoSubscripcion(objTs.getIdTipoSubscripcion()));
+			model.addAttribute("tiposubscripcion",new TipoSubscripcion());
 		}
 		catch (Exception e)
 		{
@@ -74,6 +96,9 @@ public class SubscripcionController
 		if (binRes.hasErrors()) 
 		{
 			model.addAttribute("listaSubscripcion", subService.list());
+			model.addAttribute("listaUsuarios", uService.list());
+			model.addAttribute("listaTipoPago", tpService.list());
+			model.addAttribute("listaTipoSubscripcion", tsubService.list());
 			return "subscripcion/subscripcion";
 		}
 		boolean flag = subService.insert(objSubscripcion);

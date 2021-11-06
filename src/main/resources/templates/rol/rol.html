@@ -22,39 +22,48 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container">
-
-			<div class="d-flex">
-				<h3 class="title-content">Lista de los tipos de pago</h3>
-				<a th:href="@{/tipopagos/new}" class="btn btn-warning">Nuevo</a>
+		<div class="content container row col-12">
+			<div class="col-6">
+				<h3>Registrar Rol</h3>
 			</div>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Tipo de pago</th>
-						<th scope="col" class="text-center">Eliminar tipos de pago</th>
-					</tr>
-				</thead>
-				<tbody>
-				
-					<tr th:each="tp : ${listaTipoPagos}"> 
-						<td class="text-center" th:text="${tp.idTipoPago}"></td>
-						<td class="text-center" th:text="${tp.nombreTipoPago}"></td>
-						
-						<td class="text-center"><a
-							th:href="@{/tipopagos/delete?id=}+${tp.idTipoPago}"> <i
-								class="iconf fa fa-trash" style="color:purple"></i>
-								
-						</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
-		</div>
+			<div class="col-6 frm-registro">
+				<form th:action="@{/roles/save}" th:object="${rol}" method="post">
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Role: </label>
+							<div class="col-sm-6">
+								<select name="select" th:field="*{authoriry}" class="custom-select custom-select-sm">
+									<option value="ROLE_USER" selected>Usuario</option>
+									<option value="ROLE_ADMIN">Administrador</option>
+								</select>
 
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="color" class="col-sm-2 col-form-label">Usuario</label>
+							<div class="col-sm-6">
+								<select class="custom-select custom-select-sm"
+									th:field="*{usuario}">
+									<option th:each="u : ${listaUsuarios}" th:value="${u.idUsuario}"
+										th:utext="${u.username}" />
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-6">
+								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+								<a href="/roles/list" class="btn btn-danger">Cancelar</a>
+							</div>
+						</div>
+						<p th:text="${error}" class="form-text text-danger"></p>
+
+					</form>
+
+				<div th:if="${error}" class="alert alert-danger">
+					<p th:text="${error}"></p>
+				</div>
+			</div>
+
+		</div>
 	</div>
 
 
