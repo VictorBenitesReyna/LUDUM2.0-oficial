@@ -25,35 +25,30 @@
 		<div class="content container">
 
 			<div class="d-flex">
-				<h3 class="title-content">Lista de los tipos de pago</h3>
-				<a th:href="@{/tipopagos/new}" class="btn btn-warning">Nuevo</a>
+				<h3 class="title-content">Lista de Roles</h3>
+				<a th:href="@{/roles/new}" class="btnnew btn btn-warning">Nuevo</a>
 			</div>
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
-						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Tipo de pago</th>
-						<th scope="col" class="text-center">Eliminar tipos de pago</th>
+						<th scope="col" class="text-center">ID</th>
+						<th scope="col" class="text-center">Rol</th>
+						<th scope="col" class="text-center">Usuario</th>
 					</tr>
 				</thead>
 				<tbody>
-				
-					<tr th:each="tp : ${listaTipoPagos}"> 
-						<td class="text-center" th:text="${tp.idTipoPago}"></td>
-						<td class="text-center" th:text="${tp.nombreTipoPago}"></td>
-						
-						<td class="text-center"><a
-							th:href="@{/tipopagos/delete?id=}+${tp.idTipoPago}"> <i
-								class="iconf fa fa-trash" style="color:purple"></i>
-								
-						</a></td>
+					<tr th:each="r: ${listaRoles}">
+						<td class="text-center" th:text="${r.id}"></td>
+						<td class="text-center" th:text="${r.authoriry}"></td>
+						<td class="text-center" th:text="${r.usuario.username}"></td>
 					</tr>
 				</tbody>
 			</table>
+			<div th:if="${mensaje}" class="alert alert-danger">
+				<p th:text="${mensaje}"></p>
+			</div>
 		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
-		</div>
+
 
 	</div>
 

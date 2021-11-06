@@ -13,5 +13,6 @@ public interface IVideoJuegoRepository extends JpaRepository<VideoJuego, Integer
 	
 	@Query("select count(c.plataforma) from VideoJuego c where c.plataforma=:plataforma")
 	public int plataformasExistentes(@Param("plataforma") String plataforma);
-	public VideoJuego findByPlataforma(String plataforma);
+	@Query("select count(c.codigovideojuego) from VideoJuego c where c.codigovideojuego=:codigovideojuego")
+	public int findByIdVideojuego(@Param("codigovideojuego") int codigovideojuego);
 }

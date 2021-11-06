@@ -11,7 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -46,6 +48,7 @@ public class Subscripcion
 	@Column(name = "estadoPago", nullable = false)
 	private boolean estadoPago; // pendiente o cancelado
 	
+	@Positive
 	@Column(name = "precio", nullable = false)
 	private double precio; 
 	
@@ -55,7 +58,7 @@ public class Subscripcion
 	private String tiempoDuracion;
 
 	public Subscripcion(int idSubscripcion, Usuario usuario, TipoPago tipoPago, TipoSubscripcion tipoSubscripcion,
-			@DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaActivacion, boolean estadoPago, double precio,
+			Date fechaActivacion, boolean estadoPago, @Positive double precio,
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "No puede contener letras especiales") String tiempoDuracion) {
 		super();
 		this.idSubscripcion = idSubscripcion;
@@ -137,7 +140,4 @@ public class Subscripcion
 		this.tiempoDuracion = tiempoDuracion;
 	}
 
-	
-	
-	
 }

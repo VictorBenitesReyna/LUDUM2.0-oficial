@@ -14,7 +14,6 @@ import pe.edu.upc.entities.Usuario;
 import pe.edu.upc.repositories.IUsuarioRepository;
 import pe.edu.upc.serviceinterfaces.IUsuarioService;
 
-
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
 	@Autowired
@@ -22,6 +21,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 	@Autowired
 	private IUsuarioRepository uR;
+
 	@Override
 	public Integer insert(Usuario usuario) {
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
@@ -29,10 +29,10 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		role.setAuthoriry("ROLE_USER");
 		usuario.setRoles(new ArrayList<Role>());
 		usuario.getRoles().add(role);
-		Usuario usuarioRpta= new Usuario();
-		int rpta=uR.nombresExistentes(usuario.getUsername());
-		if(rpta==0) {
-			usuarioRpta=uR.save(usuario);
+		Usuario usuarioRpta = new Usuario();
+		int rpta = uR.nombresExistentes(usuario.getUsername());
+		if (rpta == 0) {
+			usuarioRpta = uR.save(usuario);
 			return usuarioRpta.getIdUsuario();
 		}
 		return -1;
@@ -45,29 +45,38 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 	@Override
 	public boolean modificar(Usuario usuario) {
-		boolean flag =  false;
+		boolean flag = false;
 		try {
+			Usuario usuarioGuardado = uR.findById(usuario.getIdUsuario()).get();
+			if (usuario.getPhotoProduct() == null)
+				usuario.setPhotoProduct(usuarioGuardado.getPhotoProduct());
+			if (usuario.getRoles() == null)
+				usuario.setRoles(usuarioGuardado.getRoles());
+			if (!usuarioGuardado.getPassword().equals(passwordEncoder.encode(usuario.getPassword()))) {
+				usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+			}
+
 			uR.save(usuario);
 			flag = true;
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			System.out.println("Ocurrió un error");
 		}
 		return flag;
 	}
 
-	// modificar 
+	// modificar
 	@Override
-	
-	@Transactional(readOnly = true)  
-	public Usuario listarId(int idUsuario) 
- 	       
+
+	@Transactional(readOnly = true)
+	public Usuario listarId(int idUsuario)
+
 	{
 		Optional<Usuario> op = uR.findById(idUsuario);
 		return op.isPresent() ? op.get() : new Usuario();
 	}
-     
-	// hasta aca 
-	
+
+	// hasta aca
+
 	@Override
 	public Optional<Usuario> listId(int idUsuario) {
 		// TODO Auto-generated method stub

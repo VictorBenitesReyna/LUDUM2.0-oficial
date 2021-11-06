@@ -46,7 +46,7 @@ public class VideoJuegoController {
             return "videojuego/videojuego";
         } else {
             int rpta = vService.insert(videojuego);
-            if (rpta > 0) {
+            if (rpta == -1) {
                 model.addAttribute("mensaje", "Ya existe");
                 return "videojuego/videojuego";
             } else {

@@ -27,43 +27,39 @@ import pe.edu.upc.entities.Usuario;
 import pe.edu.upc.serviceinterfaces.IUploadFileService;
 import pe.edu.upc.serviceinterfaces.IUsuarioService;
 
-
-
 @Controller
 @RequestMapping("/usuarios")
 public class UsuarioController {
 	@Autowired
 	private IUsuarioService uService;
-	
 
 	@Autowired
 	private IUploadFileService uploadFileService;
-	
-	/*@Autowired
-	private IRoleService rService;*/
-	
+
+	/*
+	 * @Autowired private IRoleService rService;
+	 */
+
 	@GetMapping("/new")
-	public String newUsuario(Model model) 
-	{
+	public String newUsuario(Model model) {
 		model.addAttribute("usuario", new Usuario());
 		return "usuario/usuario";
 	}
+
 	@GetMapping("/list")
-	public String listUsuarios(Model model) 
-	{
+	public String listUsuarios(Model model) {
 		try {
 			model.addAttribute("usuario", new Usuario());
 			model.addAttribute("listaUsuarios", uService.list());
-		} catch (Exception e) 
-		{
+		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
 		return "usuario/listUsuarios";
 	}
+
 	@PostMapping("/save")
-	public String saveUsuario(@ModelAttribute @Validated Usuario usuario, BindingResult result, Model model, SessionStatus status,
-			@RequestParam("file") MultipartFile foto, RedirectAttributes flash)
-			throws Exception {
+	public String saveUsuario(@ModelAttribute @Validated Usuario usuario, BindingResult result, Model model,
+			SessionStatus status, @RequestParam("file") MultipartFile foto, RedirectAttributes flash) throws Exception {
 		if (result.hasErrors()) {
 			return "usuario/usuario";
 		} else {
@@ -85,26 +81,40 @@ public class UsuarioController {
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
 				usuario.setPhotoProduct(uniqueFilename);
 			}
-			int rpta = uService.insert(usuario);
-			if (rpta == -1) {
-				model.addAttribute("mensaje", "Ya existe");
-				return "usuario/usuario";
+			if (usuario.getIdUsuario() == 0) {
+				int rpta = uService.insert(usuario);
+
+				if (rpta == -1) {
+					model.addAttribute("mensaje", "Ya existe");
+					return "usuario/usuario";
+				} else {
+
+					model.addAttribute("mensaje", "Se guardó correctamente");
+					status.setComplete();
+				}
 			} else {
 				
-				model.addAttribute("mensaje", "Se guardó correctamente");
-				status.setComplete();
+				boolean rpta = uService.modificar(usuario);
+
+				if (rpta == false) {
+					model.addAttribute("mensaje", "Error al modificar");
+					return "usuario/usuario";
+				} else {
+
+					model.addAttribute("mensaje", "Se guardó correctamente");
+					status.setComplete();
+				}
 			}
 		}
 		model.addAttribute("usuario", new Usuario());
-		if(usuario.getIdUsuario()==0)
-		{
-			return "login";	
-		}else {
+		if (usuario.getIdUsuario() == 0) {
+			return "login";
+		} else {
 			return "redirect:/usuarios/list";
 		}
-		
-		
+
 	}
+
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
 
@@ -120,6 +130,7 @@ public class UsuarioController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
 	}
+
 	@GetMapping(value = "/view/{id}")
 	public String view(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
 
@@ -135,24 +146,27 @@ public class UsuarioController {
 
 		return "usuario/ver";
 	}
+
 	@RequestMapping("/list")
 	public String listUsuarios(Map<String, Object> model) {
 		model.put("listaUsuarios", uService.list());
 		return "usuario/listUsuarios";
 
 	}
+
 	@RequestMapping("/listarId")
 	public String listarId(Map<String, Object> model, @ModelAttribute Usuario usuario) {
 		uService.listarId(usuario.getIdUsuario());
 		return "usuario/listUsuarios";
 
 	}
+
 	// modificar
 	@RequestMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
 		Usuario objPro = uService.listarId(id);
-		
+
 		if (objPro == null) {
 			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
 			return "redirect:/usuarios/list";
@@ -161,20 +175,5 @@ public class UsuarioController {
 			return "usuario/usuario";
 		}
 	}
-	// hasta aqui
-	
-	/*@RequestMapping("/modificar{id}")
-	public String irUpdate(@PathVariable int id,Model model, RedirectAttributes objRedirect)
-	{
-		Optional<Usuario> usuario = uService.listId(id);
-		if (usuario==null)
-		{
-			objRedirect.addFlashAttribute("mensaje", "Ocurrio un error");
-			return "usuario/usuario";
-		}else
-		{
-			model.addAttribute("usuario", usuario);
-			return "usuario/usuario";
-		}
-	}*/
+
 }
