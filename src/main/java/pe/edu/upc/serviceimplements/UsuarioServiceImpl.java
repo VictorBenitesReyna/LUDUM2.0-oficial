@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entities.Role;
 import pe.edu.upc.entities.Usuario;
+import pe.edu.upc.repositories.IRoleRepository;
 import pe.edu.upc.repositories.IUsuarioRepository;
 import pe.edu.upc.serviceinterfaces.IUsuarioService;
 
@@ -21,6 +22,8 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 	@Autowired
 	private IUsuarioRepository uR;
+	
+	@Autowired IRoleRepository  rR;
 
 	@Override
 	public Integer insert(Usuario usuario) {
@@ -28,10 +31,12 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		Role role = new Role();
 		role.setAuthoriry("ROLE_USER");
 		usuario.setRoles(new ArrayList<Role>());
-		usuario.getRoles().add(role);
 		Usuario usuarioRpta = new Usuario();
 		int rpta = uR.nombresExistentes(usuario.getUsername());
 		if (rpta == 0) {
+			usuarioRpta = uR.save(usuario);
+			usuarioRpta.getRoles().add(role);
+			usuarioRpta.getRoles().get(0).setUsuario(usuarioRpta);
 			usuarioRpta = uR.save(usuario);
 			return usuarioRpta.getIdUsuario();
 		}
