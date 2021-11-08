@@ -33,7 +33,7 @@
 				<p>Roles</p>
 			</div>
 
-			<div class="panelitem" sec:authorize="hasRole('ROLE_ADMIN')">
+			<div class="panelitem" sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 				<a th:href="@{/partidas/list}"> <i class="fa fa-play-circle"
 					style="color: rgb(128, 0, 255);"></i>
 				</a>
