@@ -2,11 +2,12 @@ package pe.edu.upc.controller;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.expression.ParseException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import pe.edu.upc.entities.Usuario;
 import pe.edu.upc.serviceinterfaces.IUploadFileService;
 import pe.edu.upc.serviceinterfaces.IUsuarioService;
@@ -174,6 +174,24 @@ public class UsuarioController {
 			model.addAttribute("usuario", objPro);
 			return "usuario/usuario";
 		}
+	}
+	
+	@RequestMapping("/buscar")
+	public String finbyCategory(Map<String, Object> model, @ModelAttribute Usuario usuario)
+			throws  ParseException {
+		List<Usuario> listaUsuarios;
+		usuario.setUsername(usuario.getUsername());
+		listaUsuarios = uService.findByUsername(usuario.getUsername());
+		if(listaUsuarios.isEmpty()) {
+			listaUsuarios = uService.list();
+		}
+		if(listaUsuarios.isEmpty()) {
+			model.put("mensaje", "No se encontraron coincidencias");
+		}
+		model.put("listaUsuarios", listaUsuarios);
+		model.put("usuario", new Usuario());
+		return "usuario/listUsuarios" ;
+		
 	}
 
 }
