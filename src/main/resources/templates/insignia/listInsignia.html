@@ -33,7 +33,7 @@
 					<tr>
 						<th scope="col" class="text-center">Codigo Insignia</th>
 						<th scope="col" class="text-center">Nombre</th>
-						<th scope="col" class="text-center">Puntaje</th>
+						
 						<th scope="col" class="text-center">Videojuegos</th>
 					</tr>
 				</thead>
@@ -43,7 +43,7 @@
 							th:href="@{/insignias/view/} + ${p.codigoInsignia}"
 							th:text="${p.codigoInsignia}"></a></td>
 						<td class="text-center" th:text="${p.nombre}"></td>
-						<td class="text-center" th:text="${p.puntaje}"></td>
+						
 						<td class="text-center" th:text="${p.videojuego.plataforma}"></td>
 					</tr>
 				</tbody>

@@ -21,8 +21,6 @@ public class Insignia {
 	@Pattern(regexp = "[^0-9]+", message = "El estado de la reputacion no puede contener un número")
 	@Column(name = "nombre", nullable = false, length = 20)
 	private String nombre;
-	@Column(name = "puntaje", nullable = false)
-	private int puntaje;
 	
 	@ManyToOne
 	@JoinColumn(name = "codigovideojuego", nullable = false)
@@ -36,12 +34,10 @@ public class Insignia {
 
 
 	public Insignia(int codigoInsignia,
-			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El estado de la reputacion no puede contener un caracter") @Pattern(regexp = "[^0-9]+", message = "El estado de la reputacion no puede contener un número") String nombre,
-			int puntaje, VideoJuego codigovideojuego) {
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El estado de la reputacion no puede contener un caracter") @Pattern(regexp = "[^0-9]+", message = "El estado de la reputacion no puede contener un número") String nombre, VideoJuego codigovideojuego) {
 		super();
 		this.codigoInsignia = codigoInsignia;
 		this.nombre = nombre;
-		this.puntaje = puntaje;
 		this.codigovideojuego = codigovideojuego;
 	}
 
@@ -63,16 +59,6 @@ public class Insignia {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-
-	public int getPuntaje() {
-		return puntaje;
-	}
-
-
-	public void setPuntaje(int puntaje) {
-		this.puntaje = puntaje;
 	}
 
 
