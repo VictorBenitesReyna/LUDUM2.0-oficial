@@ -87,6 +87,7 @@ public class SubscripcionController
 		{
 			model.addAttribute("error", e.getMessage());
 		}
+		
 		return "subscripcion/listSubscripcion";
 	}
 	@RequestMapping("/save")
@@ -127,7 +128,11 @@ public class SubscripcionController
 	public String deleteSubscripcion(Model model, @RequestParam(value = "id") Integer id) 
 	{
 		subService.delete(id);
+		model.addAttribute("subscripcion", new Subscripcion());
 		model.addAttribute("listaSubscripcion", subService.list());
+		model.addAttribute("listaTipoSubscripcion", tsubService.list());
+		model.addAttribute("tiposubscripcion",new TipoSubscripcion());
+		
 		return "subscripcion/listSubscripcion";
 	}
 	
