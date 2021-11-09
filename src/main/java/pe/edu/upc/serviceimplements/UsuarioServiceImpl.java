@@ -88,4 +88,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		return uR.findById(idUsuario);
 	}
 
+	@Override
+	public List<Usuario> findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return uR.findByUsername(username);
+		
+	}
+
 }
