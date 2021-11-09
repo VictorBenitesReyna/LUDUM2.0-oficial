@@ -24,6 +24,24 @@
 
 		<div class="content container">
 
+<div class="row clearfix" sec:authorize="hasRole('ROLE_ADMIN')">
+			<form th:action="@{/usuarios/buscar}" method="post"
+				th:object="${usuario}">
+				<div class="form-group">
+					<div class="col-sm-12">
+					<label>B&uacute;squedas</label>
+						<input type="text" class="form-control"
+							th:field="*{username}" id="user"
+							placeholder="Ingrese un username"> </input>
+						<div align="left">
+							<button type="submit" class="btn btn-primary btn-md left-block">Buscar</button>
+							<a href="/username/listar" class="btn btn-dark">Cancelar</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
 			<div class="d-flex">
 				<h3 class="title-content">Lista de Usuarios</h3>
 				<a th:href="@{/usuarios/new}" class="btn btn-warning">Nuevo</a>

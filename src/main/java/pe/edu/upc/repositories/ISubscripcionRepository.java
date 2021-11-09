@@ -14,4 +14,5 @@ public interface ISubscripcionRepository extends JpaRepository<Subscripcion, Int
 	@Query("select count(l.idSubscripcion) from Subscripcion l where l.idSubscripcion=:subs")
 	public int buscarSubscripcionActiva(@Param("subs") int subscripcion);
 	public List<Subscripcion> findByTipoSubscripcionIdTipoSubscripcion(int id);
+	public List<Subscripcion> findByTipoPagoIdTipoPago(int id);
 }
