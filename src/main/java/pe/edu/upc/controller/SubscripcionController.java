@@ -1,6 +1,7 @@
 package pe.edu.upc.controller;
 
 import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Subscripcion;
+import pe.edu.upc.entities.TipoPago;
 import pe.edu.upc.entities.TipoSubscripcion;
 import pe.edu.upc.serviceinterfaces.ISubscripcionService;
 import pe.edu.upc.serviceinterfaces.ITipoPagoService;
@@ -50,7 +52,6 @@ public class SubscripcionController
 		model.addAttribute("listaTipoPago", tpService.list());
 		model.addAttribute("listaTipoSubscripcion", tsubService.list());
 		
-		model.addAttribute("subscripcion",new Subscripcion());
 		
 		return "subscripcion/subscripcion";
 		
@@ -64,6 +65,10 @@ public class SubscripcionController
 			model.addAttribute("listaSubscripcion", subService.list());
 			model.addAttribute("listaTipoSubscripcion", tsubService.list());
 			model.addAttribute("tiposubscripcion",new TipoSubscripcion());
+			model.addAttribute("tipopago",new TipoPago());
+			model.addAttribute("listaTipoPago", tpService.list());
+			
+		
 		}
 		catch (Exception e)
 		{
@@ -80,8 +85,10 @@ public class SubscripcionController
 		{
 			model.addAttribute("subscripcion", new Subscripcion());
 			model.addAttribute("listaTipoSubscripcion", tsubService.list());
+			model.addAttribute("listaTipoPago", tpService.list());
 			model.addAttribute("listaSubscripcion", subService.findByTipoSubscripcionIdTipoSubscripcion(objTs.getIdTipoSubscripcion()));
 			model.addAttribute("tiposubscripcion",new TipoSubscripcion());
+			model.addAttribute("tipopago",new TipoPago());
 		}
 		catch (Exception e)
 		{
@@ -91,9 +98,28 @@ public class SubscripcionController
 		return "subscripcion/listSubscripcion";
 	}
 	
-	
-	
-	
+
+	@RequestMapping("/buscarTP")
+	public String buscarPorTipoPago(@ModelAttribute("tipopago") @Valid TipoPago objTs, BindingResult binRes, Model model,
+			SessionStatus status)
+	{
+		try
+		{
+			
+			model.addAttribute("subscripcion", new Subscripcion());
+			model.addAttribute("listaTipoSubscripcion", tsubService.list());
+			model.addAttribute("listaTipoPago", tpService.list());
+			model.addAttribute("listaSubscripcion", subService.findByTipoPagoIdTipoPago(objTs.getIdTipoPago()));
+			model.addAttribute("tipopago",new TipoPago());
+			model.addAttribute("tiposubscripcion",new TipoSubscripcion());
+		}
+		catch (Exception e)
+		{
+			model.addAttribute("error", e.getMessage());
+		}
+		return "subscripcion/listSubscripcion";
+	}
+
 	
 	@RequestMapping("/save")
 	public String insertSubscripcion(@ModelAttribute @Valid Subscripcion objSubscripcion, BindingResult binRes, Model model,
@@ -137,7 +163,7 @@ public class SubscripcionController
 		model.addAttribute("listaSubscripcion", subService.list());
 		model.addAttribute("listaTipoSubscripcion", tsubService.list());
 		model.addAttribute("tiposubscripcion",new TipoSubscripcion());
-		
+
 		return "subscripcion/listSubscripcion";
 	}
 	

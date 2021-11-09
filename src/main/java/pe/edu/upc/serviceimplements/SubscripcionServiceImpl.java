@@ -74,4 +74,10 @@ public class SubscripcionServiceImpl implements ISubscripcionService
 		// TODO Auto-generated method stub
 		return rSUBSCRIP.findByTipoSubscripcionIdTipoSubscripcion(id);
 	}
+	
+	@Override
+	public List<Subscripcion> findByTipoPagoIdTipoPago(int id) {
+		// TODO Auto-generated method stub
+		return rSUBSCRIP.findByTipoPagoIdTipoPago(id);
+	}
 }

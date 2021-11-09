@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <meta charset="UTF-8">
@@ -22,85 +23,107 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container" >
-			<form th:action="@{/subscripciones/buscar}" method="post" 
-				th:object="${tiposubscripcion}" sec:authorize="hasRole('ROLE_ADMIN')">
+		<div class="content container">
+
+			<h3 class="title-content">Filtrar Por Tipo Suscripción</h3>
+
+			<form th:action="@{/subscripciones/buscar}" method="post"
+				th:object="${tiposubscripcion}"
+				sec:authorize="hasRole('ROLE_ADMIN')">
 				<div class="form-group">
 					<select class="form-control" th:field="*{idTipoSubscripcion}">
 
-						<option th:each="d: ${listaTipoSubscripcion}" th:value="${d.idTipoSubscripcion}"
+						<option th:each="d: ${listaTipoSubscripcion}"
+							th:value="${d.idTipoSubscripcion}"
 							th:text="${d.nombreTipoSubscripcion}"
 							th:selected="(${d.idTipoSubscripcion} == *{idTipoSubscripcion})"></option>
 					</select>
 				</div>
 				<button type="submit" class="btn btn-primary">Buscar</button>
 			</form>
-			
-			<div class="d-flex">
-				<h3 class="title-content">Lista de Subscripciones</h3>
-				<a th:href="@{/subscripciones/new}" class="btn btn-warning">Nuevo</a>
+
+			<div class="content container">
+
+				<h3 class="title-content">Filtrar Por Tipo Pago</h3>
+				<form th:action="@{/subscripciones/buscarTP}" method="post"
+					th:object="${tipopago}" sec:authorize="hasRole('ROLE_ADMIN')">
+					<div class="form-group">
+						<select class="form-control" th:field="*{idTipoPago}">
+
+							<option th:each="e: ${listaTipoPago}" th:value="${e.idTipoPago}"
+								th:text="${e.nombreTipoPago}"
+								th:selected="(${e.idTipoPago} == *{idTipoPago})"></option>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-primary">Buscar</button>
+				</form>
+
+
+				<div class="d-flex">
+					<h3 class="title-content">Lista de Subscripciones</h3>
+					<a th:href="@{/subscripciones/new}" class="btn btn-warning">Nuevo</a>
+				</div>
+				<table class="table">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col" class="text-center">Código</th>
+
+							<th scope="col" class="text-center">Username</th>
+							<th scope="col" class="text-center">TipoPago</th>
+							<th scope="col" class="text-center">TipoSubscripcion</th>
+							<th scope="col" class="text-center">FechaActivacion</th>
+							<th scope="col" class="text-center">EstadoPago</th>
+
+							<th scope="col" class="text-center">Monto</th>
+
+							<th scope="col" class="text-center">Duracion</th>
+
+							<th scope="col" class="text-center">Eliminar</th>
+
+							<th scope="col" class="text-center">Editar Subscripción</th>
+
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr th:each="subx : ${listaSubscripcion}">
+							<td class="text-center"><a class="btn btn-warning btn-xs"
+								th:href="@{/subscripciones/view/} + ${subx.idSubscripcion}"
+								th:text="${subx.idSubscripcion}"></a></td>
+
+							<td class="text-center" th:text="${subx.usuario.nombreUsuario}"></td>
+
+							<td class="text-center" th:text="${subx.tipoPago.nombreTipoPago}"></td>
+
+							<td class="text-center"
+								th:text="${subx.tipoSubscripcion.nombreTipoSubscripcion}"></td>
+
+							<td th:text="${#dates.format(subx.fechaActivacion,'dd/MM/yyyy')}"></td>
+
+							<td class="text-center" th:text="${subx.estadoPago}"></td>
+
+							<td class="text-center" th:text="${subx.precio}"></td>
+
+							<td class="text-center" th:text="${subx.tiempoDuracion}"></td>
+
+							<td class="text-center"><a
+								th:href="@{/subscripciones/delete?id=}+${subx.idSubscripcion}">
+									<i class="iconf fa fa-trash" style="color: purple"></i>
+							</a>
+							<td class="text-center"><a
+								th:href="@{'/subscripciones/update/' + ${subx.idSubscripcion}}">Re
+									Subscripcion</a></td>
+
+						</tr>
+					</tbody>
+				</table>
 			</div>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<th scope="col" class="text-center">Código</th>
+			<div th:if="${mensaje}" class="alert alert-danger">
+				<p th:text="${mensaje}"></p>
+			</div>
 
-						<th scope="col" class="text-center">Username</th>
-						<th scope="col" class="text-center">TipoPago</th>
-						<th scope="col" class="text-center">TipoSubscripcion</th>
-						<th scope="col" class="text-center">FechaActivacion</th>
-						<th scope="col" class="text-center">EstadoPago</th>
-
-						<th scope="col" class="text-center">Monto</th>
-
-						<th scope="col" class="text-center">Duracion</th>
-
-						<th scope="col" class="text-center">Eliminar</th>
-
-						<th scope="col" class="text-center">Editar Subscripción</th>
-
-					</tr>
-				</thead>
-				<tbody>
-
-					<tr th:each="subx : ${listaSubscripcion}">
-						<td class="text-center"><a class="btn btn-warning btn-xs"
-							th:href="@{/subscripciones/view/} + ${subx.idSubscripcion}"
-							th:text="${subx.idSubscripcion}"></a></td>
-
-						<td class="text-center" th:text="${subx.usuario.nombreUsuario}"></td>
-
-						<td class="text-center" th:text="${subx.tipoPago.nombreTipoPago}"></td>
-
-						<td class="text-center"
-							th:text="${subx.tipoSubscripcion.nombreTipoSubscripcion}"></td>
-
-						<td th:text="${#dates.format(subx.fechaActivacion,'dd/MM/yyyy')}"></td>
-
-						<td class="text-center" th:text="${subx.estadoPago}"></td>
-
-						<td class="text-center" th:text="${subx.precio}"></td>
-
-						<td class="text-center" th:text="${subx.tiempoDuracion}"></td>
-
-						<td class="text-center"><a
-							th:href="@{/subscripciones/delete?id=}+${subx.idSubscripcion}">
-								<i class="iconf fa fa-trash" style="color: yellow"></i>
-						</a>
-						<td class="text-center"><a
-							th:href="@{'/subscripciones/update/' + ${subx.idSubscripcion}}">Re
-								Subscripcion</a></td>
-
-					</tr>
-				</tbody>
-			</table>
 		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
-		</div>
-
 	</div>
-
 
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>

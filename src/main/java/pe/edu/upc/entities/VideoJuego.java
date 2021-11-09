@@ -18,11 +18,15 @@ public class VideoJuego {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codigovideojuego;
 	
+	/*
 	@Column(name = "numeroequipo",nullable = false)
 	private int numeroequipo;
+	*/
 	
+	/*
 	@Column(name = "nickname", nullable = false, length = 20)
 	private String nickname;
+	*/
 	
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Videojuego no puede contener un caracter especial")
 	@Column(name = "plataforma", nullable = false, length = 20)
@@ -36,12 +40,10 @@ public class VideoJuego {
 	}
 
 
-	public VideoJuego(int codigovideojuego, int numeroequipo, String nickname,
+	public VideoJuego(int codigovideojuego,
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Videojuego no puede contener un caracter especial") String plataforma) {
 		super();
 		this.codigovideojuego = codigovideojuego;
-		this.numeroequipo = numeroequipo;
-		this.nickname = nickname;
 		this.plataforma = plataforma;
 	}
 
@@ -55,32 +57,7 @@ public class VideoJuego {
 	public void setCodigovideojuego(int codigovideojuego) {
 		this.codigovideojuego = codigovideojuego;
 	}
-
-
-
-	public int getNumeroequipo() {
-		return numeroequipo;
-	}
-
-
-
-	public void setNumeroequipo(int numeroequipo) {
-		this.numeroequipo = numeroequipo;
-	}
-
-
-
-	public String getNickname() {
-		return nickname;
-	}
-
-
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-
+	
 
 	public String getPlataforma() {
 		return plataforma;

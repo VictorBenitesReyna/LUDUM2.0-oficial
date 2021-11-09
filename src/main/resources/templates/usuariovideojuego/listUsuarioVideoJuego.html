@@ -25,32 +25,40 @@
 		<div class="content container">
 
 			<div class="d-flex">
-				<h3 class="title-content">Lista de Videojuegos</h3>
-				<a th:href="@{/videojuegos/new}" class="btn btn-warning">Nuevo</a>
+				<h3 class="title-content">Lista de videojuegos por usuario</h3>
+				<a th:href="@{/usuariovideojuegos/new}" class="btnnew btn btn-warning">Nuevo</a>
 			</div>
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
-						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Videojuego</th>
-						<th scope="col" class="text-center">Detalles</th>
+						<th scope="col" class="text-center">ID</th>
+						<th scope="col" class="text-center">Usuario</th>
+						<th scope="col" class="text-center">VideoJuego</th>
+						<th scope="col" class="text-center">Numero de Equipo</th>
+						<th scope="col" class="text-center">Nickname</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr th:each="cat : ${listaVideojuegos}">
-						<td class="text-center" th:text="${cat.codigovideojuego}"></td>
-						<td class="text-center" th:text="${cat.plataforma}"></td>
-						<td class="text-center" align="center"><a
-							th:href="@{/insignias/view/} + ${cat.codigovideojuego}"> <i
-								class="fa fa-eye" style="color: gray;"></i>
-						</a></td>
+				<tbody> 
+					<tr th:each="uvj: ${listaUsuarioVideoJuego}">
+						<td class="text-center"><a class="btn btn-warning btn-xs"
+							th:href="@{/usuariovideojuegos/view/} + ${uvj.codigoUV}"
+							th:text="${uvj.codigoUV}"></a></td>
+							
+						<td class="text-center" th:text="${uvj.usuario.nombreUsuario}"></td>
+						<td class="text-center" th:text="${uvj.videojuego.plataforma}"></td>
+						<td class="text-center" th:text="${uvj.numeroequipo}"></td>
+						<td class="text-center" th:text="${uvj.nickname}"></td>
+						
+					
+						
 					</tr>
 				</tbody>
 			</table>
-		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
+			<div th:if="${mensaje}" class="alert alert-danger">
 			<p th:text="${mensaje}"></p>
 		</div>
+		</div>
+		
 
 	</div>
 

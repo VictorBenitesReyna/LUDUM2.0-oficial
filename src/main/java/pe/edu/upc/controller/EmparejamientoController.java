@@ -40,7 +40,8 @@ public class EmparejamientoController {
 		model.addAttribute("listaUsuarios", uS.list());
 		model.addAttribute("listapartidas", pS.list());
 		model.addAttribute("emparejamiento", new Emparejamiento());
-		return "emparejamiento/Emparejamiento";
+		return "emparejamiento/emparejamiento";
+
 	}
 	
 	@GetMapping("/list")

@@ -17,7 +17,7 @@ public interface ISubscripcionService
 	
 	Optional<Subscripcion> listId(int idSubscripcion);
 	public List<Subscripcion> findByTipoSubscripcionIdTipoSubscripcion(int id);
-	
+	public List<Subscripcion> findByTipoPagoIdTipoPago(int id);
 	
 
 }
