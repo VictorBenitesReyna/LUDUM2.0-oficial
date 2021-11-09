@@ -24,7 +24,8 @@ import pe.edu.upc.serviceinterfaces.IVideoJuegoService;
 
 @Controller
 @RequestMapping("/insignias")
-public class InsigniaController {
+public class InsigniaController 
+{
 	@Autowired
 	private IInsigniaService iService;
 	@Autowired
@@ -64,6 +65,7 @@ public class InsigniaController {
 			return "redirect:/insignias/new";
 		}
 	}
+	
 	@GetMapping(value = "/view/{codigovideojuego}")
 	public String view(@PathVariable(value = "codigovideojuego") int codigovideojuego, Map<String, Object> model, RedirectAttributes flash) {
 

@@ -38,7 +38,6 @@ public class EmparejamientoController {
 		model.addAttribute("emparejamiento", new Emparejamiento());
 		model.addAttribute("listaUsuarios", uS.list());
 		model.addAttribute("listapartidas", pS.list());
-		model.addAttribute("emparejamiento", new Emparejamiento());
 		return "emparejamiento/emparejamiento";
 	}
 	
