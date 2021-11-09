@@ -40,4 +40,16 @@ public class EmparejamientoServiceImpl implements IEmparejamientoService{
 		return op.isPresent() ? op.get() : new Emparejamiento();
 	}
 
+	@Override
+	public Optional<Emparejamiento> listId(int idEmparejamiento) {
+		// TODO Auto-generated method stub
+		return eR.findById(idEmparejamiento);
+	}
+
+	@Override
+	public List<Emparejamiento> findByPartidaIdPartida(int idP) {
+		// TODO Auto-generated method stub
+		return eR.findByPartidaIdPartida(idP);
+	}
+
 }

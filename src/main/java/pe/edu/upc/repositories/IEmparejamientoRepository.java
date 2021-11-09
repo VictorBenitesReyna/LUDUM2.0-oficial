@@ -1,5 +1,7 @@
 package pe.edu.upc.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,5 +14,5 @@ public interface IEmparejamientoRepository extends JpaRepository<Emparejamiento,
 	
 	@Query("select count(e.idEmparejamiento) from Emparejamiento e where e.idEmparejamiento=:id")
 	public int EmparejamientosExistentes(@Param("id") int id);
-
+	public List<Emparejamiento> findByPartidaIdPartida(int idP);
 }

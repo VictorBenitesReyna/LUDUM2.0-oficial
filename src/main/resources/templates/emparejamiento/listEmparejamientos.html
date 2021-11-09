@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <meta charset="UTF-8">
@@ -23,6 +23,21 @@
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
 		<div class="content container">
+		
+			
+			<form th:action="@{/emparejamientos/buscar}" method="post" 
+						th:object="${partida}" sec:authorize="hasRole('ROLE_ADMIN')">
+						<div class="form-group">
+							<select class="form-control" th:field="*{idPartida}">
+		
+								<option th:each="e: ${listaPartida}" th:value="${e.idPartida}"
+									th:text="${e.idPartida}"
+									th:selected="(${e.idPartida} == *{idPartida})"></option>
+							</select>
+						</div>
+						<button type="submit" class="btn btn-primary">Buscar</button>
+					</form>
+
 
 			<div class="d-flex">
 				<h3 class="title-content">Lista de Emparejamientos</h3>
