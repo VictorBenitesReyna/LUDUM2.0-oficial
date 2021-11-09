@@ -94,6 +94,7 @@ public class SubscripcionController
 		{
 			model.addAttribute("error", e.getMessage());
 		}
+		
 		return "subscripcion/listSubscripcion";
 	}
 	
@@ -161,7 +162,7 @@ public class SubscripcionController
 		model.addAttribute("listaSubscripcion", subService.list());
 		model.addAttribute("listaTipoSubscripcion", tsubService.list());
 		model.addAttribute("tiposubscripcion",new TipoSubscripcion());
-		model.addAttribute("tipopago",new TipoPago());
+
 		return "subscripcion/listSubscripcion";
 	}
 	
