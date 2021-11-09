@@ -16,7 +16,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Emparejamiento;
-import pe.edu.upc.entities.Partida;
 import pe.edu.upc.serviceinterfaces.IEmparejamientoService;
 import pe.edu.upc.serviceinterfaces.IPartidaService;
 import pe.edu.upc.serviceinterfaces.IUsuarioService;
@@ -39,8 +38,7 @@ public class EmparejamientoController {
 		model.addAttribute("emparejamiento", new Emparejamiento());
 		model.addAttribute("listaUsuarios", uS.list());
 		model.addAttribute("listapartidas", pS.list());
-		model.addAttribute("emparejamiento", new Emparejamiento());
-		return "emparejamiento/Emparejamiento";
+		return "emparejamiento/emparejamiento";
 	}
 	
 	@GetMapping("/list")
@@ -48,29 +46,10 @@ public class EmparejamientoController {
 		try {
 			model.addAttribute("emparejamiento", new Emparejamiento());
 			model.addAttribute("listaEmparejamientos", eS.list());
-			model.addAttribute("listaPartida", pS.list());
-			model.addAttribute("partida", new Partida());
 		} catch (Exception e) {
 			// TODO: handle exception
 			model.addAttribute("error", e.getMessage());
 		}
-		return "emparejamiento/listEmparejamientos";
-	}
-	
-	@RequestMapping("/buscar")
-	public String buscarPorIdPartida(@ModelAttribute("partida") @Valid Partida objP, BindingResult binRes, Model model,
-			SessionStatus status) {
-		
-		try {
-			model.addAttribute("emparejamiento", new Emparejamiento());
-			model.addAttribute("listaPartida", pS.list());
-			model.addAttribute("listaEmparejamientos", eS.findByPartidaIdPartida(objP.getIdPartida()));
-			model.addAttribute("partida", new Partida());
-		} catch (Exception e) {
-			// TODO: handle exception
-			model.addAttribute("error", e.getMessage());
-		}
-		
 		return "emparejamiento/listEmparejamientos";
 	}
 	
