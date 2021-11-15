@@ -110,6 +110,7 @@ public class UsuarioController {
 		if (usuario.getIdUsuario() == 0) {
 			return "login";
 		} else {
+			model.addAttribute("mensaje", "Registro Exitoso");
 			return "redirect:/usuarios/list";
 		}
 

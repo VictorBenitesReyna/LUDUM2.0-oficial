@@ -37,24 +37,24 @@
 							readonly th:field="*{idPartida}"></input>
 
 						<div class="form-group">
-							<label for="EstadoPartida">Estado Partida:</label> <input type="text"
-								required th:field="*{EstadoPartida}" class="form-control"
-								id="EstadoPartida"></input>
+							<label for="estadoPartida">Estado Partida:</label> <input
+								type="text" required th:field="*{estadoPartida}"
+								class="form-control" id="estadoPartida"></input>
 							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('EstadoPartida')}"
-								th:errors="*{EstadoPartida}"></div>
+								th:if="${#fields.hasErrors('estadoPartida')}"
+								th:errors="*{estadoPartida}"></div>
+						</div>
+
+						<div class="form-group">
+							<label for="estadoSinError">Estado Sin Error:</label> <input
+								type="text" required th:field="*{estadoSinError}"
+								class="form-control" id="estadoSinError"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('estadoSinError')}"
+								th:errors="*{estadoSinError}"></div>
 						</div>
 						
-						<div class="form-group">
-							<label for="EstadoSinError">Estado Sin Error:</label> <input type="text" required
-								th:field="*{EstadoSinError}" class="form-control" id="EstadoSinError"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('EstadoSinError')}" th:errors="*{EstadoSinError}"></div>
-						</div>
-
-
-
-
+						
 
 					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>
