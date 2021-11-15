@@ -38,18 +38,19 @@ public class EmparejamientoController {
 	public String newEmparejamiento(Model model) {
 		model.addAttribute("emparejamiento", new Emparejamiento());
 		model.addAttribute("listaUsuarios", uS.list());
-		model.addAttribute("listapartidas", pS.list());
+		model.addAttribute("listapartidas", pS.listByEstadoPartida(true));
 		model.addAttribute("emparejamiento", new Emparejamiento());
 		return "emparejamiento/emparejamiento";
 
 	}
 	
 	@GetMapping("/list")
-	public String listEmparejamientos(Model model) {
+	public String listEmparejamientos(Model model) 
+	{
 		try {
 			model.addAttribute("emparejamiento", new Emparejamiento());
-			model.addAttribute("listaEmparejamientos", eS.list());
-			model.addAttribute("listaPartida", pS.list());
+			model.addAttribute("listaEmparejamientos", eS.listarPorEstadoPartida(true));
+			model.addAttribute("listaPartida", pS.listByEstadoPartida(true));
 			model.addAttribute("partida", new Partida());
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -64,8 +65,8 @@ public class EmparejamientoController {
 		
 		try {
 			model.addAttribute("emparejamiento", new Emparejamiento());
-			model.addAttribute("listaPartida", pS.list());
-			model.addAttribute("listaEmparejamientos", eS.findByPartidaIdPartida(objP.getIdPartida()));
+			model.addAttribute("listaPartida", pS.listByEstadoPartida(true));
+			model.addAttribute("listaEmparejamientos", eS.listarPorIdPartidaAndEstadoPartida(objP.getIdPartida(), true));
 			model.addAttribute("partida", new Partida());
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -80,7 +81,7 @@ public class EmparejamientoController {
 		throws ParseException {
 		if(binRes.hasErrors()) {
 			model.addAttribute("listaUsuarios", uS.list());
-			model.addAttribute("listaPartidas", pS.list());
+			model.addAttribute("listaPartidas", pS.listByEstadoPartida(true));
 			return "emparejamiento/emparejamiento";
 		}else {
 			boolean flag = eS.insert(objEmp);
@@ -95,7 +96,7 @@ public class EmparejamientoController {
 	
 	@RequestMapping("/list")
 	public String listEmparejamientos(Map<String, Object> model) {
-		model.put("listaEmparejamientos", eS.list());
+		model.put("listaEmparejamientos", eS.listarPorEstadoPartida(true));
 		return "emparejamiento/listEmparejamientos";
 	}
 	

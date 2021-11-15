@@ -40,7 +40,8 @@
 				<tbody>
 					<tr th:each="pa : ${listapartidas}">
 						<td class="text-center" th:text="${pa.idPartida}"></td>
-						<td class="text-center" th:text="${pa.estadoPartida}"></td>
+						<td class="text-center" th:if="${pa.estadoPartida}">En curso</td>
+						<td class="text-center" th:unless="${pa.estadoPartida}">Finalizado</td>
 						<td class="text-center" th:text="${pa.estadoSinError}"></td>
 						<td class="text-center" th:text="${#dates.format(pa.tiempoDuracionPartida,'dd/MM/yyyy hh:mm:ss')}"></td>
 					</tr>
