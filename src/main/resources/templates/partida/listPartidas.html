@@ -34,13 +34,15 @@
 						<th scope="col" class="text-center">Codigo</th>
 						<th scope="col" class="text-center">Estado Partida</th>
 						<th scope="col" class="text-center">Estado Sin Error</th>
+						<th scope="col" class="text-center">Fecha de inicio de Partida</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="pa : ${listapartidas}">
 						<td class="text-center" th:text="${pa.idPartida}"></td>
-						<td class="text-center" th:text="${pa.EstadoPartida}"></td>
-						<td class="text-center" th:text="${pa.EstadoSinError}"></td>
+						<td class="text-center" th:text="${pa.estadoPartida}"></td>
+						<td class="text-center" th:text="${pa.estadoSinError}"></td>
+						<td class="text-center" th:text="${#dates.format(pa.tiempoDuracionPartida,'dd/MM/yyyy hh:mm:ss')}"></td>
 					</tr>
 				</tbody>
 			</table>

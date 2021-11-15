@@ -25,11 +25,12 @@
 
 		<div class="content container">
 
-			<h3 class="title-content">Filtrar Por Tipo Suscripción</h3>
+			
 
 			<form th:action="@{/subscripciones/buscar}" method="post"
 				th:object="${tiposubscripcion}"
 				sec:authorize="hasRole('ROLE_ADMIN')">
+				<h3 class="title-content">Filtrar Por Tipo Suscripción</h3>
 				<div class="form-group">
 					<select class="form-control" th:field="*{idTipoSubscripcion}">
 
@@ -44,10 +45,11 @@
 
 			<div class="content container">
 
-				<h3 class="title-content">Filtrar Por Tipo Pago</h3>
+				
 				<form th:action="@{/subscripciones/buscarTP}" method="post"
 					th:object="${tipopago}" sec:authorize="hasRole('ROLE_ADMIN')">
 					<div class="form-group">
+					<h3 class="title-content">Filtrar Por Tipo Pago</h3>
 						<select class="form-control" th:field="*{idTipoPago}">
 
 							<option th:each="e: ${listaTipoPago}" th:value="${e.idTipoPago}"

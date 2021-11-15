@@ -1,11 +1,16 @@
 package pe.edu.upc.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "partida")
@@ -15,22 +20,27 @@ public class Partida {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPartida;
 	
-	@Column(name = "EstadoPartida", nullable = false, length = 20)
-	private boolean EstadoPartida;
+	@Column(name = "estadoPartida", nullable = false)
+	private boolean estadoPartida;
 	
-	@Column(name = "EstadoSinError", nullable = false, length = 20)
-	private boolean EstadoSinError;
+	@Column(name = "estadoSinError", nullable = false)
+	private boolean estadoSinError;
+	
+	
+	@Column(name = "tiempoDuracionPartida", nullable = false)
+	private Date tiempoDuracionPartida;
 
 	public Partida() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Partida(int idPartida, boolean estadoPartida, boolean estadoSinError) {
+	public Partida(int idPartida, boolean estadoPartida, boolean estadoSinError, Date tiempoDuracionPartida) {
 		super();
 		this.idPartida = idPartida;
-		EstadoPartida = estadoPartida;
-		EstadoSinError = estadoSinError;
+		this.estadoPartida = estadoPartida;
+		this.estadoSinError = estadoSinError;
+		this.tiempoDuracionPartida = tiempoDuracionPartida;
 	}
 
 	public int getIdPartida() {
@@ -42,20 +52,31 @@ public class Partida {
 	}
 
 	public boolean isEstadoPartida() {
-		return EstadoPartida;
+		return estadoPartida;
 	}
 
 	public void setEstadoPartida(boolean estadoPartida) {
-		EstadoPartida = estadoPartida;
+		this.estadoPartida = estadoPartida;
 	}
 
 	public boolean isEstadoSinError() {
-		return EstadoSinError;
+		return estadoSinError;
 	}
 
 	public void setEstadoSinError(boolean estadoSinError) {
-		EstadoSinError = estadoSinError;
+		this.estadoSinError = estadoSinError;
 	}
+
+	public Date getTiempoDuracionPartida() {
+		return tiempoDuracionPartida;
+	}
+
+	public void setTiempoDuracionPartida(Date tiempoDuracionPartida) {
+		this.tiempoDuracionPartida = tiempoDuracionPartida;
+	}
+
+	
+
 	
 	
 	
