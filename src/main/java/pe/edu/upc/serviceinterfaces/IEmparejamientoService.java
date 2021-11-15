@@ -13,5 +13,10 @@ public interface IEmparejamientoService {
 	Emparejamiento listarId(int idEmparejamiento);
 	
 	Optional<Emparejamiento> listId(int idEmparejamiento);
+	
 	public List<Emparejamiento> findByPartidaIdPartida(int idP);
+	
+	public List<Emparejamiento> listarPorEstadoPartida(boolean estadoPartida);
+	
+	public List<Emparejamiento> listarPorIdPartidaAndEstadoPartida(int idP,boolean estadoPartida);
 }

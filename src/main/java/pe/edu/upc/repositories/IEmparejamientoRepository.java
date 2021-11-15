@@ -14,5 +14,10 @@ public interface IEmparejamientoRepository extends JpaRepository<Emparejamiento,
 	
 	@Query("select count(e.idEmparejamiento) from Emparejamiento e where e.idEmparejamiento=:id")
 	public int EmparejamientosExistentes(@Param("id") int id);
+	
 	public List<Emparejamiento> findByPartidaIdPartida(int idP);
+	
+	public List<Emparejamiento> findByPartidaEstadoPartida(boolean estadoPartida);
+	
+	public List<Emparejamiento> findByPartidaIdPartidaAndPartidaEstadoPartida(int idP,boolean estadoPartida); 
 }

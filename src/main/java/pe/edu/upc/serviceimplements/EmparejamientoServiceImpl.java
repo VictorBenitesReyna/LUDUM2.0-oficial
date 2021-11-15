@@ -52,4 +52,16 @@ public class EmparejamientoServiceImpl implements IEmparejamientoService{
 		return eR.findByPartidaIdPartida(idP);
 	}
 
+	@Override
+	public List<Emparejamiento> listarPorEstadoPartida(boolean estadoPartida) {
+		// TODO Auto-generated method stub
+		return eR.findByPartidaEstadoPartida(estadoPartida);
+	}
+
+	@Override
+	public List<Emparejamiento> listarPorIdPartidaAndEstadoPartida(int idP, boolean estadoPartida) {
+		// TODO Auto-generated method stub
+		return eR.findByPartidaIdPartidaAndPartidaEstadoPartida(idP, estadoPartida);
+	}
+
 }
