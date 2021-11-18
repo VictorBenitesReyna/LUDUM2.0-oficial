@@ -24,55 +24,21 @@
 
 		<div class="content container">
 
-<div class="row clearfix" sec:authorize="hasRole('ROLE_ADMIN')">
-			<form th:action="@{/usuarios/buscar}" method="post"
-				th:object="${usuario}">
-				<div class="form-group">
-					<div class="col-sm-12">
-					<label>B&uacute;squedas</label>
-						<input type="text" class="form-control"
-							th:field="*{username}" id="user"
-							placeholder="Ingrese un username"> </input>
-						<div align="left">
-							<button type="submit" class="btn btn-primary btn-md left-block">Buscar</button>
-							<a href="/usuarios/list" class="btn btn-dark">Cancelar</a>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-
 			<div class="d-flex">
-				<h3 class="title-content">Lista de Usuarios</h3>
-				<a th:href="@{/usuarios/new}" class="btn btn-warning">Nuevo</a>
+				<h3 class="title-content">El Tipo de Suscripcion más comprado</h3>
 			</div>
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
-						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Nombre</th>
-						<th scope="col" class="text-center">Apellido</th>
-						<th scope="col" class="text-center">Username</th>
-						<th scope="col" class="text-center">Perfil</th>
-						<th scope="col" class="text-center">FOTO</th>
+						<th scope="col" class="text-center">Tipo de Suscripcion</th>
+						<th scope="col" class="text-center">Cantidad de suscriptores</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="us : ${listaUsuarios}">
-						<td class="text-center"><a class="btn btn-warning btn-xs"
-							th:href="@{/usuarios/view/} + ${us.idUsuario}"
-							th:text="${us.idUsuario}"></a></td>
-						<td class="text-center" th:text="${us.nombreUsuario}"></td>
-						<td class="text-center" th:text="${us.apellidoUsuario}"></td>
-						<td class="text-center" th:text="${us.username}"></td>
-						
-						<td class="text-center"><a
-							th:href="@{'/usuarios/update/' + ${us.idUsuario}}">Editar Perfil</a></td>
-								
-						<td class="text-center" align="center"><a
-							th:href="@{/usuarios/view/} + ${us.idUsuario}"> <i
-								class="fa fa-eye" style="color: gray;"></i>
-						</a></td>
+					<tr> 
+						<td class="text-center" th:text="${reporte.nombre}"></td>
+						<td class="text-center" th:text="${reporte.cantidad}"></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

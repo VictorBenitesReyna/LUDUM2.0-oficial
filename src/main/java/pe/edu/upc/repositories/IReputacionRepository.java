@@ -12,4 +12,5 @@ public interface IReputacionRepository extends JpaRepository<Reputacion, Integer
 {
 	@Query("select count(l.estadoReputacion) from Reputacion l where l.estadoReputacion=:repu")
 	public int buscarProducto(@Param("repu") String reputacion);
+	
 }

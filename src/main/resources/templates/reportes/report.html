@@ -22,13 +22,8 @@
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
 		<div class="content container row col-12">
-			<div class="col-1">
-				<h3></h3>
-			</div>
-			<div class="col-3">
-				<h3>Reportes</h3>
-			</div>
 			<div class="col-8 frm-registro">
+				<h3>Reportes</h3>
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
@@ -39,17 +34,17 @@
 								<div class="cproyecto ">
 									<h3 class="tproyecto ">Suscripciones por Tipo de
 										Suscripcion</h3>
-									<p class="dproyecto ">Lista de la cantidad de veces que un
-										Tipo de Suscripción fue generada</p>
-									<a class="lnikp " th:href="@{/products/reporte1}">Ver
+									<p class="dproyecto ">Cantidad de veces de un Tipo de Suscripción </p>
+									<a class="lnikp " th:href="@{/reportes/tiposubscripcion}">Ver
 										Reporte</a>
+										<br>
 								</div>
 								<div class="cproyecto ">
-									<h3 class="tproyecto ">Categorías</h3>
-									<p class="dproyecto ">Lista de las categorías con más
-										cantidad en ventas en las órdenes</p>
-									<a class="lnikp " th:href="@{/categories/reporte2}">Ver
+									<h3 class="tproyecto ">El tipo de Suscripcion más comprada</h3>
+									<p class="dproyecto ">Tipo de Suscripcion más comprada</p>
+									<a class="lnikp " th:href="@{/reportes/mayortiposubscripcion}">Ver
 										Reporte</a>
+										<br>
 								</div>
 							</div>
 
@@ -68,6 +63,13 @@
 										Reporte</a>
 								</div>
 							</div>
+							<div class="creportes d-flex justify-content-around ">
+								<div class="cproyecto ">
+									<h3 class="tproyecto ">Proveedores mas frecuentes</h3>
+									<p class="dproyecto ">Lista de proveedores mas frecuentes</p>
+									<a class="lnikp " th:href="@{/supplier/reporte3}">Ver
+										Reporte</a>
+								</div>
 						</div>
 					</div>
 				</div>
