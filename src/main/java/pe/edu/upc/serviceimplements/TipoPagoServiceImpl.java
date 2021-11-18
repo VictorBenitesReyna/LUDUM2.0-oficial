@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import pe.edu.upc.entities.TipoPago;
 
-import pe.edu.upc.repositories.ITipoPago;
+import pe.edu.upc.repositories.ITipoPagoRepository;
 
 import pe.edu.upc.serviceinterfaces.ITipoPagoService;
 
@@ -15,7 +15,7 @@ import pe.edu.upc.serviceinterfaces.ITipoPagoService;
 public class TipoPagoServiceImpl implements ITipoPagoService
 {
 	@Autowired
-	private ITipoPago pagR;
+	private ITipoPagoRepository pagR;
 	
 	@Override
 	public Integer insert(TipoPago tipopago) 

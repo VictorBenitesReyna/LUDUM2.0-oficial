@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.entities.TipoPago;
 
 @Repository
-public interface ITipoPago extends JpaRepository<TipoPago, Integer> 
+public interface ITipoPagoRepository extends JpaRepository<TipoPago, Integer> 
 {
 	@Query("select count(c.nombreTipoPago) from TipoPago c where c.nombreTipoPago=:name")
 	public int nombresTipoPagosExistentes(@Param("name") String nombre);
