@@ -28,7 +28,7 @@ public class VideoJuego {
 	private String nickname;
 	*/
 	
-	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Videojuego no puede contener un caracter especial")
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "No puede contener letras especiales")
 	@Column(name = "plataforma", nullable = false, length = 20)
 	private String plataforma;
 
@@ -41,7 +41,7 @@ public class VideoJuego {
 
 
 	public VideoJuego(int codigovideojuego,
-			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Videojuego no puede contener un caracter especial") String plataforma) {
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "No puede contener letras especiales") String plataforma) {
 		super();
 		this.codigovideojuego = codigovideojuego;
 		this.plataforma = plataforma;

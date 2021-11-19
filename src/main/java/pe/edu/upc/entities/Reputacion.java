@@ -19,8 +19,8 @@ public class Reputacion
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idReputacion;
 
-	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El estado de la reputacion no puede contener un caracter")
-	@Pattern(regexp = "[^0-9]+", message = "El estado de la reputacion no puede contener un número")
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "La calificación no puede contener un caracter")
+	@Pattern(regexp = "[^0-9]+", message = "La calificación no puede contener un número")
 	@Column(name = "estadoReputacion", nullable = false, length = 20)
 	private String estadoReputacion;
 	
@@ -32,7 +32,7 @@ public class Reputacion
 	private Usuario usuario;
 
 	public Reputacion(int idReputacion,
-			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El estado de la reputacion no puede contener un caracter") @Pattern(regexp = "[^0-9]+", message = "El estado de la reputacion no puede contener un número") String estadoReputacion,
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "La calificación no puede contener un caracter") @Pattern(regexp = "[^0-9]+", message = "La calificación no puede contener un número") String estadoReputacion,
 			int puntos, Usuario usuario) {
 		super();
 		this.idReputacion = idReputacion;
