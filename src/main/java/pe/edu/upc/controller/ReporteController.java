@@ -29,4 +29,10 @@ public class ReporteController {
 		return "reportes/reportMayorTipoSubscripcion";
 	}
 
+
+	@GetMapping("/tipoPago")
+	public String mostrarReporteTipoPago(Model model) {
+		model.addAttribute("reportes", rS.obtenerReporteTipoPago());
+		return "reportes/reportTipoPago";
+	}
 }

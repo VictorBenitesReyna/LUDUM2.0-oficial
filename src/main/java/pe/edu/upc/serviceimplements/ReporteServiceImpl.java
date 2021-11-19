@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import pe.edu.upc.dto.ReporteSubscripcionDto;
 import pe.edu.upc.entities.Subscripcion;
+import pe.edu.upc.entities.TipoPago;
 import pe.edu.upc.entities.TipoSubscripcion;
 import pe.edu.upc.repositories.ISubscripcionRepository;
+import pe.edu.upc.repositories.ITipoPagoRepository;
 import pe.edu.upc.repositories.ITipoSubscripcionRepository;
 import pe.edu.upc.serviceinterfaces.IReporteService;
 
@@ -19,6 +21,8 @@ public class ReporteServiceImpl implements IReporteService {
 	private ISubscripcionRepository sR;
 	@Autowired
 	private ITipoSubscripcionRepository tsR;
+	@Autowired
+	private ITipoPagoRepository tpR;
 
 	@Override
 	public List<ReporteSubscripcionDto> obtenerReporteTipoSubs() {
@@ -53,6 +57,22 @@ public class ReporteServiceImpl implements IReporteService {
 		}
 
 		return reporteSuscripcion;
+	}
+
+	@Override
+	public List<ReporteSubscripcionDto> obtenerReporteTipoPago() {
+		List<ReporteSubscripcionDto> reporteSuscripciones = new ArrayList<ReporteSubscripcionDto>();
+		List<TipoPago> tipoPago = tpR.findAll();
+;		List<Subscripcion> subscripciones = new ArrayList<Subscripcion>();
+		for (int i = 0; i < tipoPago.size(); i++) {
+			subscripciones = sR
+		.findByTipoPagoIdTipoPago(tipoPago.get(i).getIdTipoPago());
+			reporteSuscripciones.add(new ReporteSubscripcionDto(subscripciones.size(),
+					tipoPago.get(i).getNombreTipoPago()));
+		}
+
+		return reporteSuscripciones;
+		
 	}
 
 }
