@@ -68,9 +68,14 @@
 								th:errors="*{estadoPago}"></div>
 
 							<div class="form-group">
-								<label for="nombre">Tiempo de Duracion:</label> <input
-									type="text" required th:field="*{tiempoDuracion}"
-									class="form-control" id="tiempoDuracion"></input>
+								<label for="nombre">Tiempo de Duracion:</label>
+						         <select
+								th:field="*{tiempoDuracion}" class="form-control"
+								name="select">
+								<option value="1mes">1 mes</option>
+								<option value="6mes" selected>6 meses</option>
+								<option value="1año">1 año</option>
+							</select>
 							</div>
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('tiempoDuracion')}"
