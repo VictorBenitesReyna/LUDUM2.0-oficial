@@ -32,6 +32,7 @@ public class ReporteController {
 	public String mostrarReporteTipoPago(Model model) {
 		model.addAttribute("reportes", rS.obtenerReporteTipoPago());
 		return "reportes/reportTipoPago";
+	}
 	
 	@GetMapping("/cantidadyMonto")
 	public String mostrarReporteCantidadyMonto(Model model)
