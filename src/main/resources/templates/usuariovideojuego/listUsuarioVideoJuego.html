@@ -40,9 +40,8 @@
 				</thead>
 				<tbody> 
 					<tr th:each="uvj: ${listaUsuarioVideoJuego}">
-						<td class="text-center"><a class="btn btn-warning btn-xs"
-							th:href="@{/usuariovideojuegos/view/} + ${uvj.codigoUV}"
-							th:text="${uvj.codigoUV}"></a></td>
+						<td class="text-center"
+							th:text="${uvj.codigoUV}"></td>
 							
 						<td class="text-center" th:text="${uvj.usuario.nombreUsuario}"></td>
 						<td class="text-center" th:text="${uvj.videojuego.plataforma}"></td>

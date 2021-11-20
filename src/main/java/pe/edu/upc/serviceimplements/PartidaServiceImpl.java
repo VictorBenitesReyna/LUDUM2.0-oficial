@@ -38,7 +38,6 @@ public class PartidaServiceImpl implements IPartidaService {
         Date hoy = new Date();
 		List<Partida> lista = pS.findAll();
 		for (int i = 0; i < lista.size(); i++) {
-			System.out.println(getDateDiff(lista.get(i).getTiempoDuracionPartida(), hoy, TimeUnit.MINUTES));
 			if(getDateDiff(lista.get(i).getTiempoDuracionPartida(), hoy, TimeUnit.MINUTES)>=1)
 			{
 				lista.get(i).setEstadoPartida(false);

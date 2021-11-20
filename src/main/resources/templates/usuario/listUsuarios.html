@@ -59,9 +59,8 @@
 				</thead>
 				<tbody>
 					<tr th:each="us : ${listaUsuarios}">
-						<td class="text-center"><a class="btn btn-warning btn-xs"
-							th:href="@{/usuarios/view/} + ${us.idUsuario}"
-							th:text="${us.idUsuario}"></a></td>
+						<td class="text-center"
+							th:text="${us.idUsuario}"></td>
 						<td class="text-center" th:text="${us.nombreUsuario}"></td>
 						<td class="text-center" th:text="${us.apellidoUsuario}"></td>
 						<td class="text-center" th:text="${us.username}"></td>

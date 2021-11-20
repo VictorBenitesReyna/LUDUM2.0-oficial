@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -93,6 +94,22 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		// TODO Auto-generated method stub
 		return uR.findByUsername(username);
 		
+	}
+
+	@Override
+	public List<Usuario> listSinUsuario() {
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		Usuario usuario= uR.findByUsername(currentUserName).get(0);
+		List<Usuario> usuarios = uR.findAll();
+		List<Usuario> usuariosSinusuario = new ArrayList<Usuario>();
+		for(int i = 0 ; i < usuarios.size();i++)
+		{
+			if(!usuarios.get(i).equals(usuario))
+			{
+				usuariosSinusuario.add(usuarios.get(i));
+			}
+		}
+		return usuariosSinusuario;
 	}
 
 }

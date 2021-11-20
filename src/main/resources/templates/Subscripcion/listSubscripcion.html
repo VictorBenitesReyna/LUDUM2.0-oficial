@@ -89,9 +89,8 @@
 					<tbody>
 
 						<tr th:each="subx : ${listaSubscripcion}">
-							<td class="text-center"><a class="btn btn-warning btn-xs"
-								th:href="@{/subscripciones/view/} + ${subx.idSubscripcion}"
-								th:text="${subx.idSubscripcion}"></a></td>
+							<td class="text-center"
+								th:text="${subx.idSubscripcion}"></td>
 
 							<td class="text-center" th:text="${subx.usuario.nombreUsuario}"></td>
 
