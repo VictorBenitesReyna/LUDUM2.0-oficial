@@ -35,4 +35,12 @@ public class ReporteController {
 		model.addAttribute("reportes", rS.obtenerReporteTipoPago());
 		return "reportes/reportTipoPago";
 	}
+	@GetMapping("/cantidadyMonto")
+	public String mostrarReporteCantidadyMonto(Model model)
+	{
+		model.addAttribute("cantidad",rS.cantidadSubscripciones());
+		model.addAttribute("monto",rS.montoSubscripciones());
+		return "reportes/reporteCantidadyMonto"; // copiamos este nombre y o ponemos en la carpeta de html
+		
+	}
 }

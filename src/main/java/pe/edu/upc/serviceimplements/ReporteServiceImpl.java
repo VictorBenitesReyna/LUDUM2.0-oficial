@@ -52,7 +52,7 @@ public class ReporteServiceImpl implements IReporteService {
 			if (subscripciones.size() >= max) {
 				reporteSuscripcion = new ReporteSubscripcionDto(subscripciones.size(),
 						tipoSubscripciones.get(i).getNombreTipoSubscripcion());
-				max=subscripciones.size();
+				max = subscripciones.size();
 			}
 		}
 
@@ -63,16 +63,33 @@ public class ReporteServiceImpl implements IReporteService {
 	public List<ReporteSubscripcionDto> obtenerReporteTipoPago() {
 		List<ReporteSubscripcionDto> reporteSuscripciones = new ArrayList<ReporteSubscripcionDto>();
 		List<TipoPago> tipoPago = tpR.findAll();
-;		List<Subscripcion> subscripciones = new ArrayList<Subscripcion>();
+		;
+		List<Subscripcion> subscripciones = new ArrayList<Subscripcion>();
 		for (int i = 0; i < tipoPago.size(); i++) {
-			subscripciones = sR
-		.findByTipoPagoIdTipoPago(tipoPago.get(i).getIdTipoPago());
-			reporteSuscripciones.add(new ReporteSubscripcionDto(subscripciones.size(),
-					tipoPago.get(i).getNombreTipoPago()));
+			subscripciones = sR.findByTipoPagoIdTipoPago(tipoPago.get(i).getIdTipoPago());
+			reporteSuscripciones
+					.add(new ReporteSubscripcionDto(subscripciones.size(), tipoPago.get(i).getNombreTipoPago()));
 		}
 
 		return reporteSuscripciones;
-		
+
+	}
+
+	@Override
+	public int cantidadSubscripciones() {
+
+		return sR.findAll().size();
+	}
+
+	@Override
+	public double montoSubscripciones() {
+		double monto = 0;
+		List<Subscripcion> subscripciones = sR.findAll();
+		for (int i = 0; i < subscripciones.size(); i++) 
+		{
+			monto += subscripciones.get(i).getPrecio(); // se recorre con el punto get list
+		}
+		return monto;
 	}
 
 }
