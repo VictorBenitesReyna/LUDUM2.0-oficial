@@ -16,4 +16,5 @@ public interface IUsuarioService
 	
 	Optional<Usuario> listId(int idUsuario);
 	List<Usuario> findByUsername(String username);
+	List<Usuario> listSinUsuario();
 }

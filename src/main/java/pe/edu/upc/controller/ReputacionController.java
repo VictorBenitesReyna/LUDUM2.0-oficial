@@ -35,7 +35,7 @@ public class ReputacionController
 	{
 		model.addAttribute("reputacion", new Reputacion());
 		
-		model.addAttribute("listaUsuarios", uService.list());
+		model.addAttribute("listaUsuarios", uService.listSinUsuario());
 		
 		model.addAttribute("reputacion", new Reputacion());
 		return "reputacion/reputacion";
@@ -87,6 +87,8 @@ public class ReputacionController
 		rService.listarId(rep.getIdReputacion());
 		return "reputacion/listReputacion";
 	}
+	
+	
 
 	/*@RequestMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {

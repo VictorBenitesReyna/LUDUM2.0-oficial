@@ -25,7 +25,9 @@ public class PartidaController {
 
 	@GetMapping("/new")
 	public String newPartida(Model model) {
-		model.addAttribute("partida", new Partida());
+		Partida partida = new Partida();
+		partida.setEstadoPartida(true);
+		model.addAttribute("partida", partida);
 		return "partida/partida";
 	}
 
