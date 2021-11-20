@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,17 +19,11 @@
 		<h2 class="col-lg-9">LUDUM</h2>
 
 		<div class="p-0 d-flex flex-row col-lg-3 info-der row">
-			<div class="col-2 d-flex">
-			<span sec:authentication="name"></span>
+			<div class="col-10 d-flex">
 				<i id="icon-user" class="fa fa-user-circle"></i>
+				<h2 class="col-lg-20" sec:authentication="name"></h2>
 			</div>
-			<div class="user-info col-8">
-			</div>
-			<div class="col-2">
-				<i id="icon-salir" class="fa fa-power-off"></i>
-
-			</div>
-			
+			<div class="user-info col-8"></div>
 		</div>
 	</div>
 

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,7 +45,7 @@ public class TipoPagoController
 		return "tipopago/listTipoPagos";
 	}
 	@PostMapping("/save")
-	public String saveTipoPago(@Validated TipoPago tipopago, BindingResult result, Model model, SessionStatus status)
+	public String saveTipoPago(@ModelAttribute("tipopago") @Validated TipoPago tipopago, BindingResult result, Model model, SessionStatus status)
 	throws Exception
 	{
 		if (result.hasErrors())

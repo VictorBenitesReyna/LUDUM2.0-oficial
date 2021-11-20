@@ -6,12 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.serviceinterfaces.ITipoSubscripcionService;
 import pe.edu.upc.entities.TipoSubscripcion;
+import pe.edu.upc.serviceinterfaces.ITipoSubscripcionService;
 
 @Controller
 @RequestMapping("/tiposubscripciones")
@@ -39,7 +40,7 @@ public class TipoSubscripcionController {
 	}
 
 	@PostMapping("/save")
-	public String saveTipoSubscripcion(@Validated TipoSubscripcion tiposubscripcion, BindingResult result, Model model,
+	public String saveTipoSubscripcion(@ModelAttribute("tiposubscripcion") @Validated TipoSubscripcion tiposubscripcion, BindingResult result, Model model,
 			SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
 			return "tiposubscripcion/tiposubscripcion";
