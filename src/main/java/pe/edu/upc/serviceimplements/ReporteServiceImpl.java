@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.dto.ReporteSubscripcionDto;
+import pe.edu.upc.dto.ReporteTipoPagoDto;
 import pe.edu.upc.entities.Subscripcion;
 import pe.edu.upc.entities.TipoPago;
 import pe.edu.upc.entities.TipoSubscripcion;
@@ -92,4 +93,23 @@ public class ReporteServiceImpl implements IReporteService {
 		return monto;
 	}
 
+	@Override
+	public ReporteSubscripcionDto mayorTipoPago() {
+		ReporteSubscripcionDto reporteTipoPago = new ReporteSubscripcionDto();
+		List<TipoPago> TipoPago = tpR.findAll();
+		List<Subscripcion> subscripciones = new ArrayList<Subscripcion>();
+		int max = 0;
+		for (int i = 0; i < TipoPago.size(); i++) {
+			subscripciones = sR
+					.findByTipoPagoIdTipoPago(TipoPago.get(i).getIdTipoPago());
+
+			if (subscripciones.size() >= max) {
+				reporteTipoPago = new ReporteSubscripcionDto(subscripciones.size(),
+						TipoPago.get(i).getNombreTipoPago());
+				max=subscripciones.size();
+			}
+		}
+
+		return reporteTipoPago;
+	}
 }

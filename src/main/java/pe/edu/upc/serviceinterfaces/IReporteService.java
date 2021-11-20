@@ -9,9 +9,7 @@ public interface IReporteService {
 	List<ReporteSubscripcionDto> obtenerReporteTipoSubs();
 	List<ReporteSubscripcionDto> obtenerReporteTipoPago();
 	ReporteSubscripcionDto mayorTipoSubscripcion();
-	
 	int cantidadSubscripciones();
-	
 	double montoSubscripciones();
-	
+	ReporteSubscripcionDto mayorTipoPago();
 }

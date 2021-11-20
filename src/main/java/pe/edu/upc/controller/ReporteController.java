@@ -13,10 +13,8 @@ import pe.edu.upc.serviceinterfaces.IReporteService;
 @RequestMapping("/reportes")
 public class ReporteController {
 	@Autowired
-	private IReporteService rS; 
-	
-	
-
+	private IReporteService rS;
+ 
 	@GetMapping("/tiposubscripcion")
 	public String mostrarReporteTipoSubs(Model model) {
 		model.addAttribute("reportes", rS.obtenerReporteTipoSubs());
@@ -34,7 +32,7 @@ public class ReporteController {
 	public String mostrarReporteTipoPago(Model model) {
 		model.addAttribute("reportes", rS.obtenerReporteTipoPago());
 		return "reportes/reportTipoPago";
-	}
+	
 	@GetMapping("/cantidadyMonto")
 	public String mostrarReporteCantidadyMonto(Model model)
 	{
@@ -42,5 +40,10 @@ public class ReporteController {
 		model.addAttribute("monto",rS.montoSubscripciones());
 		return "reportes/reporteCantidadyMonto"; // copiamos este nombre y o ponemos en la carpeta de html
 		
+	}
+	@GetMapping("/mayorTipoPago")
+	public String mostrarReporteMayorPago(Model model) {
+		model.addAttribute("reporte", rS.mayorTipoPago());
+		return "reportes/reportMayorTipoPago";
 	}
 }
