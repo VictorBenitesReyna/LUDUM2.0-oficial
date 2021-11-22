@@ -36,14 +36,14 @@ public class EmparejamientoServiceImpl implements IEmparejamientoService{
 	@Override
 	@Transactional(readOnly = true)
 	public Emparejamiento listarId(int idEmparejamiento) {
-		Optional<Emparejamiento> op = eR.findById(idEmparejamiento);
-		return op.isPresent() ? op.get() : new Emparejamiento();
+		Emparejamiento op = eR.findById(idEmparejamiento).get();
+		return op != null ? op : new Emparejamiento();
 	}
 
 	@Override
-	public Optional<Emparejamiento> listId(int idEmparejamiento) {
+	public Emparejamiento listId(int idEmparejamiento) {
 		// TODO Auto-generated method stub
-		return eR.findById(idEmparejamiento);
+		return eR.findById(idEmparejamiento).get();
 	}
 
 	@Override

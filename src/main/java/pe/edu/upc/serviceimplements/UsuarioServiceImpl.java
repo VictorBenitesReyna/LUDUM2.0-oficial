@@ -77,16 +77,16 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	public Usuario listarId(int idUsuario)
 
 	{
-		Optional<Usuario> op = uR.findById(idUsuario);
-		return op.isPresent() ? op.get() : new Usuario();
+		Usuario op = uR.findById(idUsuario).get();
+		return op != null ? op : new Usuario();
 	}
 
 	// hasta aca
 
 	@Override
-	public Optional<Usuario> listId(int idUsuario) {
+	public Usuario listId(int idUsuario) {
 		// TODO Auto-generated method stub
-		return uR.findById(idUsuario);
+		return uR.findById(idUsuario).get();
 	}
 
 	@Override

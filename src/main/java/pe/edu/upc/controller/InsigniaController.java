@@ -69,7 +69,7 @@ public class InsigniaController
 	@GetMapping(value = "/view/{codigovideojuego}")
 	public String view(@PathVariable(value = "codigovideojuego") int codigovideojuego, Map<String, Object> model, RedirectAttributes flash) {
 
-		VideoJuego videojuego = vService.listId(codigovideojuego).get();
+		VideoJuego videojuego = vService.listId(codigovideojuego);
 
 		
 		if (videojuego == null) {

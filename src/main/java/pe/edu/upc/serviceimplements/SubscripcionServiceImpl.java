@@ -44,18 +44,9 @@ public class SubscripcionServiceImpl implements ISubscripcionService
 	@Transactional(readOnly = true)  
 	public 	Subscripcion listarID(int idSubscripcion)
 	{
-		Optional<Subscripcion> op = rSUBSCRIP.findById(idSubscripcion);
-		return op.isPresent() ? op.get() : new Subscripcion();
+		Subscripcion op = rSUBSCRIP.findById(idSubscripcion).get();
+		return op != null ? op : new Subscripcion();
 	}
-
-    /*
-	@Override
-	public Subscripcion listarID(int idSubscripcion) 
-	{
-		Optional<Subscripcion> op =rSUBSCRIP.findById(idSubscripcion);
-		return op.isPresent() ? op.get() : new Subscripcion();
-	}
-	*/
 
 	@Override
 	public void delete(int idSubscripcion) 
@@ -64,9 +55,9 @@ public class SubscripcionServiceImpl implements ISubscripcionService
 	}
 
 	@Override
-	public Optional<Subscripcion> listId(int idSubscripcion) 
+	public Subscripcion listId(int idSubscripcion) 
 	{
-		return rSUBSCRIP.findById(idSubscripcion);
+		return rSUBSCRIP.findById(idSubscripcion).get();
 	}
 
 	@Override
