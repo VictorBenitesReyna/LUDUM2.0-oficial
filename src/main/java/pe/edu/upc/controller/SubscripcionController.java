@@ -53,7 +53,7 @@ public class SubscripcionController
 		model.addAttribute("listaTipoSubscripcion", tsubService.list());
 		
 		
-		return "subscripcion/subscripcion";
+		return "subscripcion/subscripcion";	
 		
 	}
 	@GetMapping("/list")
