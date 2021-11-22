@@ -53,7 +53,7 @@ public class SubscripcionController
 		model.addAttribute("listaTipoSubscripcion", tsubService.list());
 		
 		
-		return "subscripcion/subscripcion";	
+		return "Subscripcion/subscripcion";	
 		
 	}
 	@GetMapping("/list")
@@ -74,7 +74,7 @@ public class SubscripcionController
 		{
 			model.addAttribute("error", e.getMessage());
 		}
-		return "subscripcion/listSubscripcion";
+		return "Subscripcion/listSubscripcion";
 	}
 	
 	@RequestMapping("/buscar")
@@ -95,7 +95,7 @@ public class SubscripcionController
 			model.addAttribute("error", e.getMessage());
 		}
 		
-		return "subscripcion/listSubscripcion";
+		return "Subscripcion/listSubscripcion";
 	}
 	
 
@@ -117,7 +117,7 @@ public class SubscripcionController
 		{
 			model.addAttribute("error", e.getMessage());
 		}
-		return "subscripcion/listSubscripcion";
+		return "Subscripcion/listSubscripcion";
 	}
 
 	
@@ -152,7 +152,7 @@ public class SubscripcionController
 	public String listarId(Map<String, Object> model, @ModelAttribute Subscripcion sub) 
 	{
 		subService.listarID(sub.getIdSubscripcion());
-		return "subscripcion/listSubscripcion";
+		return "Subscripcion/listSubscripcion";
 	}
 	
 	@RequestMapping("/delete")
@@ -164,7 +164,7 @@ public class SubscripcionController
 		model.addAttribute("listaTipoSubscripcion", tsubService.list());
 		model.addAttribute("tiposubscripcion",new TipoSubscripcion());
 
-		return "subscripcion/listSubscripcion";
+		return "Subscripcion/listSubscripcion";
 	}
 	
 	@RequestMapping("/update/{id}")
@@ -182,7 +182,7 @@ public class SubscripcionController
 		
 		} else {
 			model.addAttribute("subscripcion", objPro);
-			return "subscripcion/subscripcion";
+			return "Subscripcion/subscripcion";
 		}
 	}
 	
