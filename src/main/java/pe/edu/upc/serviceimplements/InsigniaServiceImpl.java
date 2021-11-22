@@ -30,8 +30,8 @@ public class InsigniaServiceImpl implements IInsigniaService {
 
 	@Override
 	public Insignia listarId(int codigoInsignia) {
-		Optional<Insignia> op = iR.findById(codigoInsignia);
-		return op.isPresent() ? op.get() : new Insignia();
+		Insignia op = iR.findById(codigoInsignia).get();
+		return op != null ? op : new Insignia();
 	}
 	
 	@Override

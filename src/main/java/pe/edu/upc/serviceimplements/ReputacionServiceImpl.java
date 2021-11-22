@@ -34,8 +34,8 @@ public class ReputacionServiceImpl implements IReputacionService
 
 	@Override
 	public Reputacion listarId(int idReputacion) {
-		Optional<Reputacion> op = rR.findById(idReputacion);
-		return op.isPresent() ? op.get() : new Reputacion();
+		Reputacion op = rR.findById(idReputacion).get();
+		return op != null ? op : new Reputacion();
 	}
 
 }

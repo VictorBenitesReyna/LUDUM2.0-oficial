@@ -8,5 +8,5 @@ import pe.edu.upc.entities.VideoJuego;
 public interface IVideoJuegoService {
 	public Integer insert(VideoJuego VideoJuego);
 	List<VideoJuego> list();
-	Optional<VideoJuego> listId(int codigovideojuego);
+	VideoJuego listId(int codigovideojuego);
 }

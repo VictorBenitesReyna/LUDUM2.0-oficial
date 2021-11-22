@@ -14,7 +14,7 @@ public interface IUsuarioService
 	
 	Usuario listarId(int idUsuario);  // modificar
 	
-	Optional<Usuario> listId(int idUsuario);
+	Usuario listId(int idUsuario);
 	List<Usuario> findByUsername(String username);
 	List<Usuario> listSinUsuario();
 }

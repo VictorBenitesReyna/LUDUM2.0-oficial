@@ -34,9 +34,9 @@ public class VideoJuegoServiceImpl implements IVideoJuegoService {
 	}
 
 	@Override
-	public Optional<VideoJuego> listId(int codigovideojuego) {
+	public VideoJuego listId(int codigovideojuego) {
 		// TODO Auto-generated method stub
-		return vR.findById(codigovideojuego);
+		return vR.findById(codigovideojuego).get();
 	}
 
 }
