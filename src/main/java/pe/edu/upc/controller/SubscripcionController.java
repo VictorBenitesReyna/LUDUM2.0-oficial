@@ -28,105 +28,86 @@ import pe.edu.upc.serviceinterfaces.IUsuarioService;
 
 @Controller
 @RequestMapping("/subscripciones")
-public class SubscripcionController 
-{
+public class SubscripcionController {
 	@Autowired
 	private ISubscripcionService subService;
-	
+
 	@Autowired
 	private IUsuarioService uService;
-	
+
 	@Autowired
 	private ITipoPagoService tpService;
-	
+
 	@Autowired
 	private ITipoSubscripcionService tsubService;
-	
-	
+
 	@GetMapping("/new")
-	public String newSubscripcion(Model model)
-	{
+	public String newSubscripcion(Model model) {
 		model.addAttribute("subscripcion", new Subscripcion());
-		
+
 		model.addAttribute("listaUsuarios", uService.list());
 		model.addAttribute("listaTipoPago", tpService.list());
 		model.addAttribute("listaTipoSubscripcion", tsubService.list());
-		
-		
-		return "Subscripcion/subscripcion";	
-		
+
+		return "Subscripcion/subscripcion";
+
 	}
+
 	@GetMapping("/list")
-	public String listSubscripcion(Model model)
-	{
-		try
-		{
+	public String listSubscripcion(Model model) {
+		try {
 			model.addAttribute("subscripcion", new Subscripcion());
 			model.addAttribute("listaSubscripcion", subService.list());
 			model.addAttribute("listaTipoSubscripcion", tsubService.list());
-			model.addAttribute("tiposubscripcion",new TipoSubscripcion());
-			model.addAttribute("tipopago",new TipoPago());
+			model.addAttribute("tiposubscripcion", new TipoSubscripcion());
+			model.addAttribute("tipopago", new TipoPago());
 			model.addAttribute("listaTipoPago", tpService.list());
-			
-		
-		}
-		catch (Exception e)
-		{
+
+		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
 		return "Subscripcion/listSubscripcion";
 	}
-	
+
 	@RequestMapping("/buscar")
-	public String buscarPorTipoSubscripcion(@ModelAttribute("tiposubscripcion") @Valid TipoSubscripcion objTs, BindingResult binRes, Model model,
-			SessionStatus status)
-	{
-		try
-		{
+	public String buscarPorTipoSubscripcion(@ModelAttribute("tiposubscripcion") @Valid TipoSubscripcion objTs,
+			BindingResult binRes, Model model, SessionStatus status) {
+		try {
 			model.addAttribute("subscripcion", new Subscripcion());
 			model.addAttribute("listaTipoSubscripcion", tsubService.list());
 			model.addAttribute("listaTipoPago", tpService.list());
-			model.addAttribute("listaSubscripcion", subService.findByTipoSubscripcionIdTipoSubscripcion(objTs.getIdTipoSubscripcion()));
-			model.addAttribute("tiposubscripcion",new TipoSubscripcion());
-			model.addAttribute("tipopago",new TipoPago());
-		}
-		catch (Exception e)
-		{
+			model.addAttribute("listaSubscripcion",
+					subService.findByTipoSubscripcionIdTipoSubscripcion(objTs.getIdTipoSubscripcion()));
+			model.addAttribute("tiposubscripcion", new TipoSubscripcion());
+			model.addAttribute("tipopago", new TipoPago());
+		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		
+
 		return "Subscripcion/listSubscripcion";
 	}
-	
 
 	@RequestMapping("/buscarTP")
-	public String buscarPorTipoPago(@ModelAttribute("tipopago") @Valid TipoPago objTs, BindingResult binRes, Model model,
-			SessionStatus status)
-	{
-		try
-		{
-			
+	public String buscarPorTipoPago(@ModelAttribute("tipopago") @Valid TipoPago objTs, BindingResult binRes,
+			Model model, SessionStatus status) {
+		try {
+
 			model.addAttribute("subscripcion", new Subscripcion());
 			model.addAttribute("listaTipoSubscripcion", tsubService.list());
 			model.addAttribute("listaTipoPago", tpService.list());
 			model.addAttribute("listaSubscripcion", subService.findByTipoPagoIdTipoPago(objTs.getIdTipoPago()));
-			model.addAttribute("tipopago",new TipoPago());
-			model.addAttribute("tiposubscripcion",new TipoSubscripcion());
-		}
-		catch (Exception e)
-		{
+			model.addAttribute("tipopago", new TipoPago());
+			model.addAttribute("tiposubscripcion", new TipoSubscripcion());
+		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
 		return "Subscripcion/listSubscripcion";
 	}
 
-	
 	@RequestMapping("/save")
-	public String insertSubscripcion(@ModelAttribute @Valid Subscripcion objSubscripcion, BindingResult binRes, Model model,
-			SessionStatus status) throws ParseException 
-	{
-		if (binRes.hasErrors()) 
-		{
+	public String insertSubscripcion(@ModelAttribute @Valid Subscripcion objSubscripcion, BindingResult binRes,
+			Model model, SessionStatus status) throws ParseException {
+		if (binRes.hasErrors()) {
 			model.addAttribute("listaSubscripcion", subService.list());
 			model.addAttribute("listaUsuarios", uService.list());
 			model.addAttribute("listaTipoPago", tpService.list());
@@ -141,78 +122,47 @@ public class SubscripcionController
 			return "redirect:/subscripciones/new";
 		}
 	}
+
 	@RequestMapping("/list")
-	public String listSubscripciones(Map<String, Object> model) 
-	{
+	public String listSubscripciones(Map<String, Object> model) {
 		model.put("listaSubscripcion", subService.list());
 		return "subscripciones/listSubscripcion";
 
 	}
+
 	@RequestMapping("/listarId")
-	public String listarId(Map<String, Object> model, @ModelAttribute Subscripcion sub) 
-	{
+	public String listarId(Map<String, Object> model, @ModelAttribute Subscripcion sub) {
 		subService.listarID(sub.getIdSubscripcion());
 		return "Subscripcion/listSubscripcion";
 	}
-	
+
 	@RequestMapping("/delete")
-	public String deleteSubscripcion(Model model, @RequestParam(value = "id") Integer id) 
-	{
+	public String deleteSubscripcion(Model model, @RequestParam(value = "id") Integer id) {
 		subService.delete(id);
 		model.addAttribute("subscripcion", new Subscripcion());
 		model.addAttribute("listaSubscripcion", subService.list());
 		model.addAttribute("listaTipoSubscripcion", tsubService.list());
-		model.addAttribute("tiposubscripcion",new TipoSubscripcion());
-
+		model.addAttribute("tiposubscripcion", new TipoSubscripcion());
+		model.addAttribute("tipopago", new TipoPago());
 		return "Subscripcion/listSubscripcion";
 	}
-	
+
 	@RequestMapping("/update/{id}")
-	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) 
-	{
+	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 		Subscripcion objPro = subService.listarID(id);
-		
+
 		model.addAttribute("listaUsuarios", uService.list());
 		model.addAttribute("listaTipoPago", tpService.list());
 		model.addAttribute("listaTipoSubscripcion", tsubService.list());
-		
+
 		if (objPro == null) {
 			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
 			return "redirect:/subscripciones/list";
-		
+
 		} else {
 			model.addAttribute("subscripcion", objPro);
 			return "Subscripcion/subscripcion";
 		}
 	}
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
