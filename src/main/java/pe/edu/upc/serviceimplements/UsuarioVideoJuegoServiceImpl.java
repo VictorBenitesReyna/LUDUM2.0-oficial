@@ -13,7 +13,7 @@ import pe.edu.upc.serviceinterfaces.IUsuarioVideoJuegoService;
 
 
 @Service
-public class IUsuarioVideoJuegoServiceImpl implements IUsuarioVideoJuegoService
+public class UsuarioVideoJuegoServiceImpl implements IUsuarioVideoJuegoService
 {
 	@Autowired
 	private IUsuarioVideoJuegoRepository uvA;
