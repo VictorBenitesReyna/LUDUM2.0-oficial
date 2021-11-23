@@ -22,8 +22,9 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 	@Autowired
 	private IUsuarioRepository uR;
-	
-	@Autowired IRoleRepository  rR;
+
+	@Autowired
+	IRoleRepository rR;
 
 	@Override
 	public Integer insert(Usuario usuario) {
@@ -59,12 +60,14 @@ public class UsuarioServiceImpl implements IUsuarioService {
 				usuario.setRoles(usuarioGuardado.getRoles());
 			if (!usuarioGuardado.getPassword().equals(passwordEncoder.encode(usuario.getPassword()))) {
 				usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+			} else if (usuario.getPassword() == null) {
+				usuario.setPassword(usuarioGuardado.getPassword());
 			}
 
 			uR.save(usuario);
 			flag = true;
 		} catch (Exception ex) {
-			System.out.println("Ocurrió un error");
+			System.out.println(ex);
 		}
 		return flag;
 	}
@@ -92,19 +95,17 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	public List<Usuario> findByUsername(String username) {
 		// TODO Auto-generated method stub
 		return uR.findByUsername(username);
-		
+
 	}
 
 	@Override
 	public List<Usuario> listSinUsuario() {
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		Usuario usuario= uR.findByUsername(currentUserName).get(0);
+		Usuario usuario = uR.findByUsername(currentUserName).get(0);
 		List<Usuario> usuarios = uR.findAll();
 		List<Usuario> usuariosSinusuario = new ArrayList<Usuario>();
-		for(int i = 0 ; i < usuarios.size();i++)
-		{
-			if(!usuarios.get(i).equals(usuario))
-			{
+		for (int i = 0; i < usuarios.size(); i++) {
+			if (!usuarios.get(i).equals(usuario)) {
 				usuariosSinusuario.add(usuarios.get(i));
 			}
 		}
