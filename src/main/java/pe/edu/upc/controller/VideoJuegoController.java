@@ -36,7 +36,7 @@ public class VideoJuegoController {
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
         }
-        return "videojuego/listVideojuegos";
+        return "videojuego/listVideoJuegos";
     }
 
     @PostMapping("/save")
