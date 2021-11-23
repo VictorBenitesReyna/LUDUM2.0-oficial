@@ -95,7 +95,6 @@ public class UsuarioController {
 			} else {
 				
 				boolean rpta = uService.modificar(usuario);
-
 				if (rpta == false) {
 					model.addAttribute("mensaje", "Error al modificar");
 					return "usuario/usuario";

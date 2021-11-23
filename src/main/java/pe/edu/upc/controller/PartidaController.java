@@ -37,12 +37,12 @@ public class PartidaController {
 			model.addAttribute("partida", new Partida());
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-			boolean hasUserRole = authentication.getAuthorities().stream()
-					.anyMatch(r -> r.getAuthority().equals("ROLE_USER"));
-			if (hasUserRole == true) {
-				model.addAttribute("listapartidas", pS.listByEstadoPartida(true));
-			} else {
+			boolean hasRoleAdmin = authentication.getAuthorities().stream()
+					.anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+			if (hasRoleAdmin == true) {
 				model.addAttribute("listapartidas", pS.list());
+			} else {
+				model.addAttribute("listapartidas", pS.listByEstadoPartida(true));
 			}
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
