@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pe.edu.upc.repositories.IInsigniaRepository;
 import pe.edu.upc.repositories.ISubscripcionRepository;
 import pe.edu.upc.serviceinterfaces.IReporteService;
 
@@ -12,6 +13,8 @@ import pe.edu.upc.serviceinterfaces.IReporteService;
 public class ReporteServiceImpl implements IReporteService {
 	@Autowired
 	private ISubscripcionRepository sR;
+	@Autowired
+	private IInsigniaRepository iR;
 
 	@Override
 	public List<String[]> obtenerReporteTipoSubs() {
@@ -37,5 +40,10 @@ public class ReporteServiceImpl implements IReporteService {
 	@Override
 	public List<String[]> mayorTipoPago() {
 		return sR.mayorTipoPago();
+	}
+	
+	@Override
+	public List<String[]> cantidadLogrosXvideojuego() {
+		return iR.cantidadLogrosXVideojuego();
 	}
 }
