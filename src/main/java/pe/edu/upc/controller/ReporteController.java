@@ -23,7 +23,7 @@ public class ReporteController {
 	
 	@GetMapping("/mayortiposubscripcion")
 	public String mostrarMayorReporteTipoSubs(Model model) {
-		model.addAttribute("reporte", rS.mayorTipoSubscripcion());
+		model.addAttribute("reportes", rS.mayorTipoSubscripcion());
 		return "reportes/reportMayorTipoSubscripcion";
 	}
 
@@ -37,14 +37,13 @@ public class ReporteController {
 	@GetMapping("/cantidadyMonto")
 	public String mostrarReporteCantidadyMonto(Model model)
 	{
-		model.addAttribute("cantidad",rS.cantidadSubscripciones());
-		model.addAttribute("monto",rS.montoSubscripciones());
+		model.addAttribute("reportes",rS.montoSubscripciones());
 		return "reportes/reporteCantidadyMonto"; // copiamos este nombre y o ponemos en la carpeta de html
 		
 	}
 	@GetMapping("/mayorTipoPago")
 	public String mostrarReporteMayorPago(Model model) {
-		model.addAttribute("reporte", rS.mayorTipoPago());
+		model.addAttribute("reportes", rS.mayorTipoPago());
 		return "reportes/reportMayorTipoPago";
 	}
 }

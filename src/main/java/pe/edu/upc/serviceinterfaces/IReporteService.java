@@ -6,10 +6,9 @@ import pe.edu.upc.dto.ReporteSubscripcionDto;
 
 public interface IReporteService {
 	
-	List<ReporteSubscripcionDto> obtenerReporteTipoSubs();
-	List<ReporteSubscripcionDto> obtenerReporteTipoPago();
-	ReporteSubscripcionDto mayorTipoSubscripcion();
-	int cantidadSubscripciones();
-	double montoSubscripciones();
-	ReporteSubscripcionDto mayorTipoPago();
+	List<String[]> obtenerReporteTipoSubs();
+	List<String[]>  obtenerReporteTipoPago();
+	List<String[]> mayorTipoSubscripcion();
+	List<String[]> montoSubscripciones();	
+	List<String[]> mayorTipoPago();
 }

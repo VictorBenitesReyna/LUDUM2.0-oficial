@@ -35,9 +35,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr> 
-						<td class="text-center" th:text="${cantidad}"></td>
-						<td class="text-center" th:text="${monto}"></td>
+					<tr th:each="r : ${reportes}"> 
+						<td class="text-center" th:text="${r[0]}"></td>
+						<td class="text-center" th:text="${r[1]}"></td>
 					</tr>
 				</tbody>
 			</table>

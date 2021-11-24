@@ -36,8 +36,8 @@
 				</thead>
 				<tbody>
 					<tr th:each="r : ${reportes}"> 
-						<td class="text-center" th:text="${r.nombre}"></td>
-						<td class="text-center" th:text="${r.cantidad}"></td>
+						<td class="text-center" th:text="${r[0]}"></td>
+						<td class="text-center" th:text="${r[1]}"></td>
 					</tr>
 				</tbody>
 			</table>
