@@ -12,7 +12,6 @@ import pe.edu.upc.serviceinterfaces.ISubscripcionService;
 
 
 @Service
-
 public class SubscripcionServiceImpl implements ISubscripcionService
 {
 	@Autowired
