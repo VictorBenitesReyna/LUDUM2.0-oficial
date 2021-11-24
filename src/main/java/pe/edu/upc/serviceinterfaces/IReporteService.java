@@ -11,4 +11,5 @@ public interface IReporteService {
 	List<String[]> mayorTipoSubscripcion();
 	List<String[]> montoSubscripciones();	
 	List<String[]> mayorTipoPago();
+	List<String[]> cantidadLogrosXvideojuego();
 }

@@ -46,4 +46,9 @@ public class ReporteController {
 		model.addAttribute("reportes", rS.mayorTipoPago());
 		return "reportes/reportMayorTipoPago";
 	}
+	@GetMapping("/cantidadLogros")
+	public String cantidadLogros(Model model) {
+		model.addAttribute("reportes", rS.cantidadLogrosXvideojuego());
+		return "reportes/reportLogros";
+	}
 }
