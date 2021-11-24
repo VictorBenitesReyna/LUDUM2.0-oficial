@@ -20,3 +20,4 @@ public interface IInsigniaRepository extends JpaRepository<Insignia, Integer> {
 			, nativeQuery = true)
 	public List<String[]> cantidadLogrosXVideojuego();
 }
+	
