@@ -13,11 +13,14 @@ import pe.edu.upc.entities.Insignia;
 public interface IInsigniaRepository extends JpaRepository<Insignia, Integer> {
 	@Query("select count(l.nombre) from Insignia l where l.nombre=:insig")
 	public int buscarNombre(@Param("insig") String nombre);
+
 	public List<Insignia> findByCodigovideojuegoCodigovideojuego(int codigovideojuego);
-	@Query(value = "Select v.plataforma, Count(v.codigovideojuego) "
-			+ "From videojuego v join insignia i on v.codigovideojuego = i.codigo_insignia "
+
+	@Query(value = "Select v.plataforma, Count(i.codigo_insignia) "
+			+ "From videojuego v join insignia i on v.codigovideojuego = i.codigovideojuego "
 			+ "group by v.codigovideojuego "
 			, nativeQuery = true)
+	
 	public List<String[]> cantidadLogrosXVideojuego();
 }
-	
+
